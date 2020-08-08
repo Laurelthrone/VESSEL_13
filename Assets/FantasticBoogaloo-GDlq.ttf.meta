@@ -3,7 +3,7 @@ guid: 4d00b6232e9569e418ce4dc396d0da7b
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 90
+  fontSize: 94
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
@@ -13,9 +13,9 @@ TrueTypeFontImporter:
   - Fantastic Boogaloo
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
-  useLegacyBoundsCalculation: 0
+  useLegacyBoundsCalculation: 1
   shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 

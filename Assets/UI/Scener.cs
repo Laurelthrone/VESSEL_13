@@ -22,11 +22,10 @@ public class Scener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && SceneManager.GetActiveScene().name != "titlescreen")
         {
             if (Input.GetKeyDown("r")) StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
             if (Input.GetKeyDown("1")) nextScene();
-            if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
         }
     }
 
