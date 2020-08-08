@@ -5032,7 +5032,7 @@ MonoBehaviour:
   speed: 24.4
   jumpheight: 14.01
   gravity: 2
-  groundMargin: 1.5
+  groundMargin: 1.3
   playerState: grounded
   playerSprite: {fileID: 4498159219717017673}
   trail: {fileID: 4207511361872780324}
