@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -311,6 +311,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db73a6f7dc0a6dc4b82c7645626e313a, type: 3}
+--- !u!114 &353494141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6552976593967954925, guid: db73a6f7dc0a6dc4b82c7645626e313a,
+    type: 3}
+  m_PrefabInstance: {fileID: 353494140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47414bdb03552fd43b16f28f2d2c22c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &467698459
 GameObject:
   m_ObjectHideFlags: 0
@@ -49413,7 +49425,7 @@ PrefabInstance:
         type: 3}
       propertyPath: scener
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 353494141}
     - target: {fileID: 4207511363367179372, guid: 352469d22eae06f4098a867aaacd007e,
         type: 3}
       propertyPath: jumpSprite

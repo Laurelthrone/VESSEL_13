@@ -317,17 +317,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948642680941157200}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -67.8582}
-  m_LocalScale: {x: 1.27, y: 33310.9, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.78}
+  m_LocalScale: {x: 2.13, y: 104.5, z: 1}
   m_Children: []
   m_Father: {fileID: 6552976593967954924}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2240846.2, y: -12.4904785}
-  m_SizeDelta: {x: 1080, y: -825.2632}
+  m_AnchoredPosition: {x: -2240843.5, y: 20.25}
+  m_SizeDelta: {x: 1018.75, y: 241.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8297621671237438132
 CanvasRenderer:
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Material: {fileID: 2100000, guid: f7e8ca5cc40539647b9adca5679a88c3, type: 2}
   m_Color: {r: 0.17558035, g: 0.04538981, b: 0.18867922, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.01
 --- !u!225 &2971130775533043261
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948642680941157200}
   m_Enabled: 1
-  m_Alpha: 0.09
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 1
