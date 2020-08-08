@@ -53,30 +53,44 @@ public class Player : MonoBehaviour
     void Update()
     {
 
+        float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
+        float ymov = Input.GetAxis("Vertical") * Time.deltaTime;
+
         if (pointLight.pointLightOuterRadius != targetRadius)
         {
-            if (pointLight.pointLightOuterRadius < targetRadius) pointLight.pointLightOuterRadius += 1f;
-            else pointLight.pointLightOuterRadius -= 1;
+            shiftLight();
         }
 
-        if (!alive)
-        {
-            DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
-            playerSR.sprite = deadSprite;
-            targetRadius = 15f;
-            return;
-        }
-        else
-        {
-            targetRadius = 35f;
-            pointLight.color = new Color(0.996164f, 0.8254717f, 1f);
-        }
-
+        if (isDead()) return;
+        
         if (playerState == "pound") trail.enabled = false;
         else trail.enabled = true;
 
+        if (Input.anyKeyDown)
+        {
+            abilities(ref ymov);
+        }
+
         //Recharge doublejump/groundpound when grounded
-        grounded = isGrounded();
+        isGrounded();
+        
+
+        //Handle particles
+        doParticles();
+
+        spriteUpdate();
+
+        movePlayer(xmov, ymov);
+
+        //If moving above speed limit,
+        if (player.velocity.x > speedLimit) player.velocity = new Vector2(speedLimit, player.velocity.y);
+        if (player.velocity.x < -speedLimit) player.velocity = new Vector2(-speedLimit, player.velocity.y);
+       
+    }
+
+    private void isGrounded()
+    {
+        bool grounded = Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - groundMargin), maskG);
         if (grounded && playerState != "victory")
         {
             land();
@@ -90,29 +104,7 @@ public class Player : MonoBehaviour
             }
             else if (playerState == "pound" && player.velocity.y > 0) land();
         }
-
-        //Handle particles
-        doParticles();
-
-        float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
-        float ymov = Input.GetAxis("Vertical") * Time.deltaTime;
-
-        spriteUpdate();
-
-        //Handle jump and pound
-        abilities(ref ymov);
-
-        movePlayer(xmov, ymov);
-
-        //If moving above speed limit,
-        if (player.velocity.x > speedLimit) player.velocity = new Vector2(speedLimit, player.velocity.y);
-        if (player.velocity.x < -speedLimit) player.velocity = new Vector2(-speedLimit, player.velocity.y);
-       
-    }
-
-    private bool isGrounded()
-    {
-        return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - groundMargin), maskG);
+        return;
     }
 
     private void movePlayer(float xmov, float ymov)
@@ -198,7 +190,7 @@ public class Player : MonoBehaviour
             return "jump";
         }
 
-        return "right";
+        return "jump";
     }
 
     private void spriteUpdate()
@@ -219,7 +211,7 @@ public class Player : MonoBehaviour
         return playerState;
     }
 
-    void OnTriggerEnter2D(Collider2D trig)
+    private void OnTriggerEnter2D(Collider2D trig)
     {
         if (playerState != "victory")
         switch (trig.name)
@@ -228,7 +220,6 @@ public class Player : MonoBehaviour
                 if (playerState != "dead") Sounder.PlaySound("death");
                 playerState = "dead";
                 squash.SetTrigger("Reset");
-                Debug.Log("dead");
                 alive = false;
                 break;
             case "ORB":
@@ -240,8 +231,31 @@ public class Player : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D()
+    private void OnCollisionEnter2D()
     {
        if (Scener.transitionActive == false) Sounder.PlaySound("land");
+    }
+
+    private void shiftLight()
+    {
+        if (pointLight.pointLightOuterRadius < targetRadius) pointLight.pointLightOuterRadius += 1f;
+        else pointLight.pointLightOuterRadius -= 1;
+    }
+
+    private bool isDead()
+    {
+        if (!alive)
+        {
+            DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
+            playerSR.sprite = deadSprite;
+            targetRadius = 15f;
+            return true;
+        }
+        else
+        {
+            targetRadius = 35f;
+            pointLight.color = new Color(0.996164f, 0.8254717f, 1f);
+            return false;
+        }
     }
 }
