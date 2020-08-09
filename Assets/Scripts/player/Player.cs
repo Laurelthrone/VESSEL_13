@@ -229,9 +229,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D trig)
     {
+        Debug.Log("Hit!");
         if (playerState != "victory")
         switch (trig.name)
         {
+            case "Fireball(Clone)":
+            case "Fireball":
             case "Spike":
                 if (playerState != "dead") Sounder.PlaySound("death");
                 playerState = "dead";
