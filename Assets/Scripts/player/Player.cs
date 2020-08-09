@@ -231,9 +231,10 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D trig)
     {
         Debug.Log("Hit!");
-        if (playerState != "victory")
+        if (playerState != "victory")   
         switch (trig.name)
         {
+            case "LeftFireball(Clone)":
             case "Fireball(Clone)":
             case "Fireball":
             case "Spike":
