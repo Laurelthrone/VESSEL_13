@@ -13,43 +13,55 @@ public class StationaryFireballSpawner : MonoBehaviour
     private GameObject thisSpawner;
     private BoxCollider2D trigger;
     public Light2D glow;
-    private bool subroutine;
+    float dist;
+    float add = 0;
+    public float range;
+    bool spawnerIEnumerator;
 
     // Start is called before the first frame update
     void Start()
     {
         thisSpawner = gameObject;
-        StartCoroutine(Spawner());
-        subroutine = true;
+        spawnerIEnumerator = false;
         blue();
     }
 
-    // Update is called once per frame
-    void Awake()
+    void Update()
     {
-        StartCoroutine(Spawner());
+        dist = Vector2.Distance(player.transform.position, gameObject.transform.position);
+        if(!spawnerIEnumerator)
+        {
+            StartCoroutine(Spawner());
+            spawnerIEnumerator = true;
+            active = true;
+        }
     }
 
     IEnumerator Spawner()
     {
-        float dist = Vector2.Distance(player.transform.position, gameObject.transform.position);
-        if (dist <= 20)
-        {
-        
-            while (active)
+        Debug.Log("Coroutine started");
+        Debug.Log(dist);
+        Debug.Log(range);
+        Debug.Log(active && dist <= range);
+
+        yield return new WaitForSeconds(1);
+
+        if (active && dist <= range)
             {
                 Sounder.PlaySound("shoot");
                 Instantiate(prefab, new Vector3(thisSpawner.transform.position.x, thisSpawner.transform.position.y, 0), Quaternion.identity);
                 yield return new WaitForSeconds(delay);
             }
-        
-        float add = 0;
-        if (delay > 1) add = 3;
-        yield return new WaitForSeconds((delay * 2) + add);
-        Sounder.PlaySound("restart");
-        active = true;
-        blue();
+
+        else if (!active)
+        {
+            yield return new WaitForSeconds((delay * 2) + add);
+            Sounder.PlaySound("restart");
+            active = true;
+            blue();
         }
+
+        spawnerIEnumerator = false;
     }
 
     void OnTriggerEnter2D(Collider2D target)

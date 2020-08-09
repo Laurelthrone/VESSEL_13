@@ -14,6 +14,7 @@ public class Sounder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shootSound = Resources.Load<AudioClip>("shoot");
         jumpSound = Resources.Load<AudioClip>("jump");
         dropSound = Resources.Load<AudioClip>("drop");
         landSound = Resources.Load<AudioClip>("land");
@@ -22,7 +23,6 @@ public class Sounder : MonoBehaviour
         boxSound = Resources.Load<AudioClip>("box");
         breakSound = Resources.Load<AudioClip>("break");
         restartSound = Resources.Load<AudioClip>("restart");
-        shootSound = Resources.Load<AudioClip>("shoot");
         audioSrc = GetComponent<AudioSource>();
         audioSrc.volume = .5f;
 
