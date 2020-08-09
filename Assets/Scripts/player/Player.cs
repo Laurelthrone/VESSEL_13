@@ -79,11 +79,8 @@ public class Player : MonoBehaviour
             abilities(ref ymov);
         }
 
-        //Recharge doublejump/groundpound when grounded
         isGrounded();
         
-
-        //Handle particles
         doParticles();
 
         spriteUpdate();
