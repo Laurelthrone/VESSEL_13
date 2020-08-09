@@ -45,11 +45,12 @@ public class StationaryFireballSpawner : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         if (active && dist <= range)
-            {
-                Sounder.PlaySound("shoot");
-                Instantiate(prefab, new Vector3(thisSpawner.transform.position.x, thisSpawner.transform.position.y, 0), Quaternion.identity);
-                yield return new WaitForSeconds(delay);
-            }
+        {
+            blue();
+            Sounder.PlaySound("shoot");
+            Instantiate(prefab, new Vector3(thisSpawner.transform.position.x, thisSpawner.transform.position.y, 0), Quaternion.identity);
+            yield return new WaitForSeconds(delay);
+        }
 
         else if (!active)
         {
@@ -58,6 +59,7 @@ public class StationaryFireballSpawner : MonoBehaviour
             active = true;
             blue();
         }
+        else glow.color = HexConvert.toColor("555555");
 
         spawnerIEnumerator = false;
     }
