@@ -23,6 +23,7 @@ public class StationaryFireballSpawner : MonoBehaviour
     {
         thisSpawner = gameObject;
         spawnerIEnumerator = false;
+        active = true;
         blue();
     }
 
@@ -33,15 +34,12 @@ public class StationaryFireballSpawner : MonoBehaviour
         {
             StartCoroutine(Spawner());
             spawnerIEnumerator = true;
-            active = true;
         }
     }
 
     IEnumerator Spawner()
     {
         Debug.Log("Coroutine started");
-        Debug.Log(dist);
-        Debug.Log(range);
         Debug.Log(active && dist <= range);
 
         yield return new WaitForSeconds(1);
