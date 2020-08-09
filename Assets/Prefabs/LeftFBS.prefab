@@ -123,7 +123,7 @@ MonoBehaviour:
   delay: 3
   prefab: {fileID: 7457934885831743248, guid: 256ed4cfc8b47834aaf17e53034aba5a, type: 3}
   glow: {fileID: 929896199032012757}
-  range: 0
+  range: 30
 --- !u!114 &4041529078100442695
 MonoBehaviour:
   m_ObjectHideFlags: 0

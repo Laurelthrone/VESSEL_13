@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2498070268738402189}
   - component: {fileID: 8451592405871819966}
   m_Layer: 0
-  m_Name: FireballShooter(Stationary)
+  m_Name: RightFBS
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   delay: 3
   prefab: {fileID: 4290664729218470722, guid: fa1d8ccd99eae6749b36eec65aab16b5, type: 3}
   glow: {fileID: 5352289392191081488}
+  range: 30
 --- !u!114 &9130736232844447106
 MonoBehaviour:
   m_ObjectHideFlags: 0
