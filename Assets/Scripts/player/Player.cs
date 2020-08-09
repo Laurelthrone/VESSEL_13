@@ -66,9 +66,13 @@ public class Player : MonoBehaviour
         }
 
         if (isDead()) return;
-        
+
         if (playerState == "pound") trail.enabled = false;
-        else trail.enabled = true;
+        else 
+        {
+            trail.enabled = true;
+            if ((squash.GetCurrentAnimatorStateInfo(0)).IsName("Player_Pound")) squash.SetTrigger("Reset");
+        }
 
         if (Input.anyKeyDown)
         {
