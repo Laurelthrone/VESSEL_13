@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
     public float gravity;
     public float groundMargin;
     public string playerState = "grounded";
+    public float slamCooldown;
 
     public GameObject playerSprite;
     public TrailRenderer trail;
@@ -38,6 +41,7 @@ public class Player : MonoBehaviour
     bool doubleJump;
     bool alive = true;
     string spriteState;
+    float slamTime;
 
     // Start is called before the first frame update
     void Start()
@@ -148,22 +152,34 @@ public class Player : MonoBehaviour
 
     private void abilities(ref float ymov)
     {
+        if (playerState != "pound" && !grounded && Input.GetKeyDown("s"))
+        {
+            if (slamTime <= Time.time)
+            {
+                squash.SetTrigger("Pound");
+                Sounder.PlaySound("drop");
+                player.velocity = new Vector2(player.velocity.x, -30);
+                playerState = "pound";
+                return;
+            }
+            else
+            {
+                StartCoroutine("bufferSlam");
+            }
+        }
+
         if (grounded && Input.GetKeyDown("w"))
         {
             jump(ref ymov, jumpheight);
+            slamTime = slamCooldown + Time.time;
+            return;
         }
 
         if (!grounded && doubleJump == true && Input.GetKeyDown("w"))
         {
             jump(ref ymov, jumpheight * dJumpMod);
-        }
-
-        if (playerState != "pound" && !grounded && Input.GetKeyDown("s"))
-        {
-            squash.SetTrigger("Pound");
-            Sounder.PlaySound("drop");
-            player.velocity = new Vector2(player.velocity.x, -30);
-            playerState = "pound";
+            slamTime = slamCooldown + Time.time;
+            return;
         }
     }
 
@@ -257,5 +273,13 @@ public class Player : MonoBehaviour
             pointLight.color = new Color(0.996164f, 0.8254717f, 1f);
             return false;
         }
+    }
+    IEnumerator bufferSlam()
+    {
+        yield return new WaitForSeconds(slamCooldown);
+        squash.SetTrigger("Pound");
+        Sounder.PlaySound("drop");
+        player.velocity = new Vector2(player.velocity.x, -30);
+        playerState = "pound";
     }
 }
