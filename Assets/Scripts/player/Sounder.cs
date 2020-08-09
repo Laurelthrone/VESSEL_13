@@ -9,6 +9,7 @@ public class Sounder : MonoBehaviour
     static AudioSource audioSrc;
     static IDictionary<string, AudioClip> clipNames = new Dictionary<string, AudioClip>();
     static bool onlyOnce = true;
+    
 
     // Start is called before the first frame update
     void Start()
