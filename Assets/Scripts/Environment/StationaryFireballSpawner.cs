@@ -14,7 +14,6 @@ public class StationaryFireballSpawner : MonoBehaviour
     private BoxCollider2D trigger;
     public Light2D glow;
     float dist;
-    float add = 0;
     public float range;
     bool spawnerIEnumerator;
 
@@ -54,7 +53,7 @@ public class StationaryFireballSpawner : MonoBehaviour
 
         else if (!active)
         {
-            yield return new WaitForSeconds((delay * 2) + add);
+            yield return new WaitForSeconds(5);
             Sounder.PlaySound("restart");
             active = true;
             blue();
