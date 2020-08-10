@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
 
     private void abilities(ref float ymov)
     {
-        if (playerState != "pound" && !grounded && Input.GetKeyDown("s"))
+        if (playerState != "pound" && !grounded && Input.GetButtonDown("Slam"))
         {
             if (slamTime <= Time.time)
             {
@@ -169,14 +169,14 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (grounded && Input.GetKeyDown("w"))
+        if (grounded && Input.GetButtonDown("Jump"))
         {
             jump(ref ymov, jumpheight);
             slamTime = slamCooldown + Time.time;
             return;
         }
 
-        if (!grounded && doubleJump == true && Input.GetKeyDown("w"))
+        if (!grounded && doubleJump == true && Input.GetButtonDown("Jump"))
         {
             jump(ref ymov, jumpheight * dJumpMod);
             slamTime = slamCooldown + Time.time;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HexConvert : MonoBehaviour
 {
-    //Shamelessly grabbed off stackoverflow for my convenience
+    //Shamelessly grabbed off stackoverflow for my convenience  
     public static Color toColor(string hex)
     {
         hex = hex.Replace("0x", "");//in case the string is formatted 0xFFFFFF
