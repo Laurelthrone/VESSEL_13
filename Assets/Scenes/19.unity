@@ -232,7 +232,7 @@ PrefabInstance:
     - target: {fileID: 4207511363367179281, guid: 352469d22eae06f4098a867aaacd007e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4207511363367179281, guid: 352469d22eae06f4098a867aaacd007e,
         type: 3}
@@ -350,7 +350,7 @@ PrefabInstance:
     - target: {fileID: 6738750916875822475, guid: 8d707e041196017479fd9f4eb8335c6e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6738750916875822475, guid: 8d707e041196017479fd9f4eb8335c6e,
         type: 3}
@@ -419,7 +419,7 @@ PrefabInstance:
     - target: {fileID: 6552976593967954924, guid: db73a6f7dc0a6dc4b82c7645626e313a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6552976593967954924, guid: db73a6f7dc0a6dc4b82c7645626e313a,
         type: 3}
@@ -571,7 +571,7 @@ PrefabInstance:
     - target: {fileID: 5732586732400322127, guid: 77b5e362d852829499ad1f9952d731c0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5732586732400322127, guid: 77b5e362d852829499ad1f9952d731c0,
         type: 3}
@@ -635,7 +635,7 @@ PrefabInstance:
     - target: {fileID: 6738750916875822475, guid: 8d707e041196017479fd9f4eb8335c6e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6738750916875822475, guid: 8d707e041196017479fd9f4eb8335c6e,
         type: 3}
@@ -714,17 +714,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1960026751}
     m_ColliderPaths:
-    - - X: 100000041
-        Y: 100000100
-      - X: 39999959
-        Y: 100000100
-      - X: 39999900
-        Y: 100000041
-      - X: 39999900
-        Y: -99999900
-      - X: -19999900
-        Y: -99999900
-      - X: -19999900
+    - - X: -19999900
         Y: 100000041
       - X: -19999959
         Y: 100000100
@@ -742,6 +732,16 @@ CompositeCollider2D:
         Y: -580000041
       - X: 100000100
         Y: 100000041
+      - X: 100000041
+        Y: 100000100
+      - X: 39999959
+        Y: 100000100
+      - X: 39999900
+        Y: 100000041
+      - X: 39999900
+        Y: -99999900
+      - X: -19999900
+        Y: -99999900
   m_CompositePaths:
     m_Paths:
     - - {x: 9.999974, y: -58.000015}
@@ -2740,8 +2740,8 @@ Tilemap:
   - first: {x: -1, y: -6, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2758,8 +2758,8 @@ Tilemap:
   - first: {x: 1, y: -6, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3339,11 +3339,11 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 3
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 914cdc5ea5958e94c9f0680f83bb0326, type: 2}
-  - m_RefCount: 3
+  - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 474412591ce9169469bdf80bda630fd7, type: 2}
-  - m_RefCount: 3
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 1522d40154540ce4293ee183edd023c6, type: 2}
   - m_RefCount: 42
     m_Data: {fileID: 11400000, guid: 4fb0370ea1f8c9b4898da1207930535a, type: 2}
@@ -3358,12 +3358,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 3
+  - m_RefCount: 2
     m_Data: {fileID: 4537764067525485436, guid: 6d4285863e263914c9ca4cad8f2b2774,
       type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 5
     m_Data: {fileID: 196617503028578631, guid: 6d4285863e263914c9ca4cad8f2b2774, type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 2
     m_Data: {fileID: 5539469925377555812, guid: 6d4285863e263914c9ca4cad8f2b2774,
       type: 3}
   - m_RefCount: 42
