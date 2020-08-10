@@ -31,6 +31,11 @@ public class Scener : MonoBehaviour
 
     public void nextScene()
     {
+        if (currentScene == "28")
+        {
+            GoToScene("endscreen");
+            return;
+        }
         int sceneNum;
         sceneNum = int.Parse(currentScene) + 1;
         StartCoroutine(LoadLevel(sceneNum.ToString()));
