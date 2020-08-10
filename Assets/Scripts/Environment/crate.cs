@@ -32,7 +32,7 @@ public class crate : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D target)
     {
-        if (target.gameObject.tag.Equals("Player") && playerScript.playerState == "pound")
+        if (target.gameObject.tag.Equals("Player") && playerScript.getState() == "pound")
         {
             Sounder.PlaySound("box");
             Instantiate(prefab, new Vector3(thisCrate.transform.position.x, thisCrate.transform.position.y, 0), Quaternion.identity);

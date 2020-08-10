@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
     public float jumpheight = 20f;
     public float gravity;
     public float groundMargin;
-    public string playerState = "grounded";
     public float slamCooldown;
 
+    public GameObject thisCamera;
     public GameObject playerSprite;
     public TrailRenderer trail;
     public Light2D pointLight;
@@ -39,9 +39,9 @@ public class Player : MonoBehaviour
     bool grounded;
     bool doSquash;
     bool doubleJump;
-    bool alive = true;
     string spriteState;
     float slamTime;
+    string playerState = "grounded";
 
     // Start is called before the first frame update
     void Start()
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         //Prepare to check movement
         Vector2 movement;
 
-        //If grounded, stop in place. In air, keep moving.
+        //If grounded with no input, stop in place. In air, keep moving.
         if (Input.GetAxis("Horizontal") < .5 && Input.GetAxis("Horizontal") > -.5 && grounded)
         {
             movement = new Vector2(-player.velocity.x * 2, ymov);
@@ -186,13 +186,10 @@ public class Player : MonoBehaviour
 
     private void land()
     {
-        if (playerState != "dead")
-        {
-            playerState = "grounded";
-            if (doSquash) squash.SetTrigger("Squash");
-            doubleJump = true;
-            doSquash = false;
-        }
+        playerState = "grounded";
+        if (doSquash) squash.SetTrigger("Squash");
+        doubleJump = true;
+        doSquash = false;
     }
 
     private string getSpriteState()
@@ -223,14 +220,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    //This is supposed to let other s
     public string getState()
     {
         return playerState;
     }
 
+    //This handles interactions with interactable objects. Really need to rework this because god just look at this code it's an embarrassment.
     private void OnTriggerEnter2D(Collider2D trig)
     {
-        Debug.Log("Hit!");
         if (playerState != "victory")   
         switch (trig.name)
         {
@@ -239,9 +237,11 @@ public class Player : MonoBehaviour
             case "Fireball":
             case "Spike":
                 if (playerState != "dead") Sounder.PlaySound("death");
-                playerState = "dead";
-                squash.SetTrigger("Reset");
-                alive = false;
+                    {
+                        playerState = "dead";
+                        thisCamera.SendMessage("deathShake"); 
+                        squash.SetTrigger("Reset");
+                    }
                 break;
             case "ORB":
                 if (playerState != "victory") Sounder.PlaySound("orb");
@@ -252,20 +252,23 @@ public class Player : MonoBehaviour
 
     }
 
+    //This literally just plays the landing sound when you hit something
     private void OnCollisionEnter2D()
     {
        if (Scener.transitionActive == false) Sounder.PlaySound("land");
     }
 
+    //If the light radius isn't the target radius, shift the radius in the right direction
     private void shiftLight()
     {
         if (pointLight.pointLightOuterRadius < targetRadius) pointLight.pointLightOuterRadius += 1f;
         else pointLight.pointLightOuterRadius -= 1;
     }
 
+    //Performs death actions and returns whether the player is dead
     private bool isDead()
     {
-        if (!alive)
+        if (playerState == "dead")
         {
             DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
             playerSR.sprite = deadSprite;
@@ -279,6 +282,8 @@ public class Player : MonoBehaviour
             return false;
         }
     }
+    
+    //Adds slight delay to pound immediately after a jump to fix slowfall glitch
     IEnumerator bufferSlam()
     {
         yield return new WaitForSeconds(slamCooldown);

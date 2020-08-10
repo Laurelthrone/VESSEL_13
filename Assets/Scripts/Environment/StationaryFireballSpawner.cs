@@ -65,7 +65,7 @@ public class StationaryFireballSpawner : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D target)
     {
-        if (target.gameObject.tag.Equals("Player") && player.playerState == "pound" && active == true)
+        if (target.gameObject.tag.Equals("Player") && player.getState() == "pound" && active == true)
         {
             Debug.Log("oof");
             Sounder.PlaySound("break");
