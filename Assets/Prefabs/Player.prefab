@@ -5043,9 +5043,12 @@ MonoBehaviour:
   poundSprite: {fileID: 21300000, guid: 8cec55976e088e64f821f4defa114adc, type: 3}
   jumpSprite: {fileID: 21300000, guid: 6a65263ca5fcdd848b9d957e5cf4c8c2, type: 3}
   deadSprite: {fileID: 21300000, guid: 8f92e8919e4145640ac5916acada6bec, type: 3}
-  maskG:
+  Ground:
     serializedVersion: 2
     m_Bits: 256
+  Crates:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!50 &4207511363367179373
 Rigidbody2D:
   serializedVersion: 4

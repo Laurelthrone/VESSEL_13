@@ -35,6 +35,7 @@ public class crate : MonoBehaviour
         if (target.gameObject.tag.Equals("Player") && playerScript.getState() == "pound")
         {
             Sounder.PlaySound("box");
+            player.SendMessage("crateBroken");
             Instantiate(prefab, new Vector3(thisCrate.transform.position.x, thisCrate.transform.position.y, 0), Quaternion.identity);
             Destroy(thisCrate);
         }

@@ -33,7 +33,8 @@ public class Player : MonoBehaviour
     //private
     Rigidbody2D player;
     CapsuleCollider2D capsule;
-    [SerializeField] private LayerMask maskG;
+    [SerializeField] private LayerMask Ground;
+    [SerializeField] private LayerMask Crates;
 
     float targetRadius;
     bool grounded;
@@ -42,10 +43,13 @@ public class Player : MonoBehaviour
     string spriteState;
     float slamTime;
     string playerState = "grounded";
+    private float ymov;
+    private float crateMargin;
 
     // Start is called before the first frame update
     void Start()
     {
+        crateMargin = groundMargin * 2;
         player = GetComponent<Rigidbody2D> ();
         capsule = GetComponent<CapsuleCollider2D>();  
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
@@ -58,7 +62,7 @@ public class Player : MonoBehaviour
     {
 
         float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
-        float ymov = Input.GetAxis("Vertical") * Time.deltaTime;
+        ymov = Input.GetAxis("Vertical") * Time.deltaTime;
 
         if (pointLight.pointLightOuterRadius != targetRadius)
         {
@@ -93,9 +97,14 @@ public class Player : MonoBehaviour
        
     }
 
+    private bool groundDetect(LayerMask mask, float margin)
+    {
+        return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - margin), mask);
+    }
+
     private void isGrounded()
     {
-        bool grounded = Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - groundMargin), maskG);
+        bool grounded = groundDetect(Ground, groundMargin);
         if (grounded && playerState != "victory")
         {
             land();
@@ -291,5 +300,23 @@ public class Player : MonoBehaviour
         Sounder.PlaySound("drop");
         player.velocity = new Vector2(player.velocity.x, -30);
         playerState = "pound";
+    }
+
+    private void crateBroken()
+    {
+        if (groundDetect(Crates,crateMargin))
+        {
+            player.velocity = new Vector2(player.velocity.x, 30);
+        }
+        else player.velocity = new Vector2(player.velocity.x, 20);
+        playerState = "airborne";
+        doubleJump = true;
+    }
+
+    private void wallbounce()
+    {
+        player.velocity = new Vector2(player.velocity.x * 1.5f, 30);
+        playerState = "airborne";
+        doubleJump = true;
     }
 }
