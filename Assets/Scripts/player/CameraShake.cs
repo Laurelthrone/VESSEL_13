@@ -21,16 +21,16 @@ public class CameraShake : MonoBehaviour
 
     void deathShake()
     {
-        animator.SetTrigger("Death");
+        if (Globals.shakeEnabled) animator.SetTrigger("Death");
     }
 
     void slamShake()
     {
-        animator.SetTrigger("Slam");
+        if (Globals.shakeEnabled) animator.SetTrigger("Slam");
     }
 
     void land()
     {
-        animator.SetTrigger("Land");
+        if (Globals.shakeEnabled) animator.SetTrigger("Land");
     }
 }

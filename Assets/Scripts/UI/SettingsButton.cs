@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TitleButton : MonoBehaviour
+public class SettingsButton : MonoBehaviour
 {
 
     public Button button;
@@ -12,12 +12,11 @@ public class TitleButton : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        button.onClick.AddListener(ReturnToTitle);
+        button.onClick.AddListener(SettingsMenu);
     }
-        
-    void ReturnToTitle()
+
+    void SettingsMenu()
     {
-        scener.GoToScene("titlescreen");
-        PauseMenu.unpause();
+        scener.GoToScene("settings");
     }
 }

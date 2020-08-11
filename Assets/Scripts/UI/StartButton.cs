@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResumeButton : MonoBehaviour
+public class StartButton : MonoBehaviour
 {
 
     public Button button;
+    public Scener scener;
 
     // Update is called once per frame
     void Start()
     {
-        button.onClick.AddListener(ResumeGame);
+        button.onClick.AddListener(StartGame);
     }
         
-    void ResumeGame()
+    void StartGame()
     {
-        PauseMenu.unpause();
+        scener.GoToScene(Globals.currentScene);
     }
 }

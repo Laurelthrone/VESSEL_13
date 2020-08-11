@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Scener : MonoBehaviour
 {
 
-    static string currentScene;
-    Scene scene;
+    public static string currentScene;
+    public Scene scene;
     public Animator transition;
     public static bool transitionActive;
 
@@ -16,9 +17,10 @@ public class Scener : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         currentScene = scene.name;
+        if(int.TryParse(currentScene,out int a)) Globals.currentScene = currentScene;
         transitionActive = false;
     }
-
+        
     // Update is called once per frame
     void Update()
     {
@@ -41,8 +43,22 @@ public class Scener : MonoBehaviour
         StartCoroutine(LoadLevel(sceneNum.ToString()));
     }
 
+    public void prevScene()
+    {
+        if (currentScene == "1")
+        {
+            GoToScene("titlescreen");
+            return;
+        }
+        int sceneNum;
+        sceneNum = int.Parse(currentScene) - 1;
+        StartCoroutine(LoadLevel(sceneNum.ToString()));
+    }
+
+
     IEnumerator LoadLevel(string sceneNum)
     {
+        Debug.Log(sceneNum);
         transitionActive = true;
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1.5f);
