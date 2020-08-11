@@ -53,8 +53,8 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 21300000, guid: c04142ab1cea0b84782098562aa69327,
     type: 3}
   m_UseNormalMap: 0
-  m_LightOrder: -85
-  m_AlphaBlendOnOverlap: 0
+  m_LightOrder: 8
+  m_AlphaBlendOnOverlap: 1
   m_ShadowIntensity: 0
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
@@ -4878,7 +4878,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
