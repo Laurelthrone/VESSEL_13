@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1225,6 +1225,11 @@ PrefabInstance:
       propertyPath: scener
       value: 
       objectReference: {fileID: 1272194903}
+    - target: {fileID: 4207511363367179372, guid: 352469d22eae06f4098a867aaacd007e,
+        type: 3}
+      propertyPath: orb
+      value: 
+      objectReference: {fileID: 1388805513}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 352469d22eae06f4098a867aaacd007e, type: 3}
 --- !u!1001 &615423274
@@ -2583,6 +2588,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77b5e362d852829499ad1f9952d731c0, type: 3}
+--- !u!1 &1388805513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5489079879821307325, guid: 77b5e362d852829499ad1f9952d731c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1388805512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1391276005
 PrefabInstance:
   m_ObjectHideFlags: 0
