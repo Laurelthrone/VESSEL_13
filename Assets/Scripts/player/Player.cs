@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
         player.gravityScale = gravity;
         Physics2D.IgnoreLayerCollision(9, 10);
-        targetPos = new Vector2(orb.transform.position.x, orb.transform.position.y);
     }
 
     // Update is called once per frame
@@ -66,7 +65,8 @@ public class Player : MonoBehaviour
 
         if(playerState == "victory")
         {
-            transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), targetPos, 3 * Time.deltaTime);
+            targetPos = new Vector2(orb.transform.position.x, orb.transform.position.y);
+            transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), targetPos, 7 * Time.deltaTime);
         }
 
         float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
