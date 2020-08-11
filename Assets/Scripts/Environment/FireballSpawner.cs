@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FireballSpawner : MonoBehaviour
 {
-
+    public float lowerLimit;
+    public float upperLimit;
     public GameObject prefab;
     private GameObject thisSpawner;
 
@@ -24,7 +25,7 @@ public class FireballSpawner : MonoBehaviour
     {
       while(true)
         {
-            yield return new WaitForSeconds(Random.Range(0.1f, 1));
+            yield return new WaitForSeconds(Random.Range(lowerLimit, upperLimit));
             Instantiate(prefab, new Vector3(thisSpawner.transform.position.x, thisSpawner.transform.position.y, 0), Quaternion.identity);
         }
     }
