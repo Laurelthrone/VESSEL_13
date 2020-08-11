@@ -21,7 +21,16 @@ public class CameraShake : MonoBehaviour
 
     void deathShake()
     {
-        Debug.Log("Received");
         animator.SetTrigger("Death");
+    }
+
+    void slamShake()
+    {
+        animator.SetTrigger("Slam");
+    }
+
+    void land()
+    {
+        animator.SetTrigger("Land");
     }
 }

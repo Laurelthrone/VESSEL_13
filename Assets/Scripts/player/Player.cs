@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     public GameObject thisCamera;
     public GameObject playerSprite;
+    public GameObject orb;
     public TrailRenderer trail;
     public Light2D pointLight;
     public Scener scener;
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
     string playerState = "grounded";
     private float ymov;
     private float crateMargin;
+    private Vector2 targetPos;
 
     // Start is called before the first frame update
     void Start()
@@ -55,11 +57,17 @@ public class Player : MonoBehaviour
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
         player.gravityScale = gravity;
         Physics2D.IgnoreLayerCollision(9, 10);
+        targetPos = new Vector2(orb.transform.position.x, orb.transform.position.y);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(playerState == "victory")
+        {
+            transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), targetPos, 3 * Time.deltaTime);
+        }
 
         float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
         ymov = Input.GetAxis("Vertical") * Time.deltaTime;
@@ -168,6 +176,7 @@ public class Player : MonoBehaviour
             {
                 squash.SetTrigger("Pound");
                 Sounder.PlaySound("drop");
+                thisCamera.SendMessage("slamShake");
                 player.velocity = new Vector2(player.velocity.x, -30);
                 playerState = "pound";
                 return;
@@ -195,6 +204,7 @@ public class Player : MonoBehaviour
 
     private void land()
     {
+        if (playerState == "pound") thisCamera.SendMessage("land");
         playerState = "grounded";
         if (doSquash) squash.SetTrigger("Squash");
         doubleJump = true;
@@ -304,6 +314,7 @@ public class Player : MonoBehaviour
 
     private void crateBroken()
     {
+        thisCamera.SendMessage("land");
         if (groundDetect(Crates,crateMargin))
         {
             player.velocity = new Vector2(player.velocity.x, 30);
@@ -315,6 +326,7 @@ public class Player : MonoBehaviour
 
     private void wallbounce()
     {
+        thisCamera.SendMessage("land");
         player.velocity = new Vector2(player.velocity.x * 1.5f, 30);
         playerState = "airborne";
         doubleJump = true;
