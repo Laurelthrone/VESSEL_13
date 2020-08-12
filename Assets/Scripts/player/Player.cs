@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
         {
             spriteAnimator.SetFloat("Speed", player.velocity.x / 3);
         }
-        else spriteAnimator.SetFloat("Speed", 6);
+        else spriteAnimator.SetFloat("Speed", 6 * Math.Sign(player.velocity.x));
        
     }
 
@@ -287,7 +287,7 @@ public class Player : MonoBehaviour
     {
         if (playerState == "dead")
         {
-            spriteAnimator.SetFloat("Speed", .5f);
+            spriteAnimator.SetFloat("Speed", .99f * spriteAnimator.GetFloat("Speed"));
             Physics2D.IgnoreLayerCollision(14, 10, true);
             DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
             spriteUpdate("dead");
