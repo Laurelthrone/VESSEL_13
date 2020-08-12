@@ -17,15 +17,14 @@ public class Player : MonoBehaviour
     public float groundMargin;
     public float slamCooldown;
 
-    public GameObject thisCamera;
-    public GameObject playerSprite;
-    public GameObject orb;
+    public GameObject thisCamera, playerSprite, orb, face;
     public TrailRenderer trail;
     public Light2D pointLight;
     public Scener scener;
     public Animator squash;
+    public Sprite faceLeft, faceRight, faceWin, faceDead, facePound;
 
-    SpriteRenderer playerSR;
+    SpriteRenderer playerSR, playerFace;
 
     //private
     Rigidbody2D player;
@@ -59,6 +58,7 @@ public class Player : MonoBehaviour
         player = GetComponent<Rigidbody2D> ();
         capsule = GetComponent<CapsuleCollider2D>();  
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
+        playerFace = face.GetComponent<SpriteRenderer>();
         spriteAnimator = playerSprite.GetComponent<Animator>();
         player.gravityScale = gravity;
         Physics2D.IgnoreLayerCollision(9, 10);
@@ -81,8 +81,11 @@ public class Player : MonoBehaviour
 
         if(playerState == "victory")
         {
+            spriteUpdate();
             targetPos = new Vector2(orb.transform.position.x, orb.transform.position.y);
             transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), targetPos, 7 * Time.deltaTime);
+            playerFace.sprite = faceWin;
+            return;
         }
 
         float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
@@ -111,7 +114,7 @@ public class Player : MonoBehaviour
         
         doParticles();
 
-        spriteUpdate(playerState);
+        spriteUpdate();
 
         movePlayer(xmov, ymov);
 
@@ -233,9 +236,13 @@ public class Player : MonoBehaviour
         doSquash = false;
     }
 
-    private void spriteUpdate(string thisState)
+    private void spriteUpdate()
     {
-        playerSR.color = playerColors[thisState];
+        playerSR.color = playerColors[playerState];
+        if (playerState == "dead") playerFace.sprite = faceDead;
+        else if (playerState == "pound") playerFace.sprite = facePound;
+        else if (player.velocity.x < 0) playerFace.sprite = faceLeft;
+        else playerFace.sprite = faceRight;
     }
 
     public string getState()
@@ -290,7 +297,7 @@ public class Player : MonoBehaviour
             spriteAnimator.SetFloat("Speed", .99f * spriteAnimator.GetFloat("Speed"));
             Physics2D.IgnoreLayerCollision(14, 10, true);
             DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
-            spriteUpdate("dead");
+            spriteUpdate();
             targetRadius = 15f;
             return true;
         }

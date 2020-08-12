@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1041,7 +1041,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -152, y: 66}
+  m_AnchoredPosition: {x: -283.9, y: 124.4}
   m_SizeDelta: {x: 1087.8728, y: 513.626}
   m_Pivot: {x: 0.2384767, y: 0.8196805}
 --- !u!114 &2145040944
@@ -1070,13 +1070,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 86
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: untitled ball game thing
+  m_Text: VESSEL 13
 --- !u!222 &2145040945
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1110,8 +1110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 566.21747, y: 203.38342}
-  m_SizeDelta: {x: 1919.0283, y: 976.5182}
+  m_AnchoredPosition: {x: 556.1, y: 192.4}
+  m_SizeDelta: {x: 1987.0952, y: 1393.5541}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2082525011506096782
 GameObject:
@@ -1601,6 +1601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47414bdb03552fd43b16f28f2d2c22c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene:
+    m_Handle: 0
   transition: {fileID: 2586517930003357253}
 --- !u!1 &8688977886387570996
 GameObject:
