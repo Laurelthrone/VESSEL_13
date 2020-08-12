@@ -26,10 +26,6 @@ public class Player : MonoBehaviour
     public Animator squash;
 
     SpriteRenderer playerSR;
-    
-    public Sprite poundSprite;
-    public Sprite jumpSprite;
-    public Sprite deadSprite;
 
     //private
     Rigidbody2D player;
@@ -37,27 +33,46 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask Ground;
     [SerializeField] private LayerMask Crates;
 
-    float targetRadius;
     bool grounded;
     bool doSquash;
     bool doubleJump;
+
     string spriteState;
+    public string playerState = "grounded";
+
+    float targetRadius;
     float slamTime;
-    string playerState = "grounded";
-    private float ymov;
-    private float crateMargin;
+    float ymov;
+    float crateMargin;
+    
     private Vector2 targetPos;
+    
+    Animator spriteAnimator;
+    Dictionary<string, Color> playerColors = new Dictionary<string, Color>();
+
+    Color Pound, Normal, Dead;
 
     // Start is called before the first frame update
-    void Start()
+    void Start()    
     {
         crateMargin = groundMargin * 2;
         player = GetComponent<Rigidbody2D> ();
         capsule = GetComponent<CapsuleCollider2D>();  
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
+        spriteAnimator = playerSprite.GetComponent<Animator>();
         player.gravityScale = gravity;
         Physics2D.IgnoreLayerCollision(9, 10);
         Physics2D.IgnoreLayerCollision(14, 10, true);
+
+        ColorUtility.TryParseHtmlString("#CF616D", out Pound);
+        ColorUtility.TryParseHtmlString("#FFCEF8", out Normal);
+        ColorUtility.TryParseHtmlString("#87639A", out Dead);
+
+        playerColors.Add("pound", Pound);
+        playerColors.Add("airborne", Normal);
+        playerColors.Add("victory", Normal);
+        playerColors.Add("grounded", Normal);
+        playerColors.Add("dead", Dead);
     }
 
     // Update is called once per frame
@@ -96,13 +111,19 @@ public class Player : MonoBehaviour
         
         doParticles();
 
-        spriteUpdate();
+        spriteUpdate(playerState);
 
         movePlayer(xmov, ymov);
 
         //If moving above speed limit,
         if (player.velocity.x > speedLimit) player.velocity = new Vector2(speedLimit, player.velocity.y);
         if (player.velocity.x < -speedLimit) player.velocity = new Vector2(-speedLimit, player.velocity.y);
+
+        if (playerState != "pound")
+        {
+            spriteAnimator.SetFloat("Speed", player.velocity.x / 3);
+        }
+        else spriteAnimator.SetFloat("Speed", 6);
        
     }
 
@@ -212,35 +233,11 @@ public class Player : MonoBehaviour
         doSquash = false;
     }
 
-    private string getSpriteState()
+    private void spriteUpdate(string thisState)
     {
-        if (playerState == "pound")
-        {
-            return "pound";
-        }
-
-        if (playerState == "airborne")
-        {
-            return "jump";  
-        }
-
-        return "jump";
+        playerSR.color = playerColors[thisState];
     }
 
-    private void spriteUpdate()
-    {
-        switch(getSpriteState())
-        {
-            case "pound":
-                playerSR.sprite = poundSprite;
-                break;
-            case "jump":
-                playerSR.sprite = jumpSprite;
-                break;
-        }
-    }
-
-    //This is supposed to let other s
     public string getState()
     {
         return playerState;
@@ -290,9 +287,10 @@ public class Player : MonoBehaviour
     {
         if (playerState == "dead")
         {
+            spriteAnimator.SetFloat("Speed", .5f);
             Physics2D.IgnoreLayerCollision(14, 10, true);
             DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
-            playerSR.sprite = deadSprite;
+            spriteUpdate("dead");
             targetRadius = 15f;
             return true;
         }
