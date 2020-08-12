@@ -14,16 +14,17 @@ public class ToggleScreenShake : MonoBehaviour
     {
         text = GetComponentInChildren<Text>();
         button.onClick.AddListener(toggleShake);
-        if (Globals.shakeEnabled == true)
-        {
-            text.text = "Screen Shake: On";
-        }
-        else text.text = "Screen Shake: Off";
+        updateText();
     }
 
     void toggleShake()
     {
         Globals.shakeEnabled = !Globals.shakeEnabled;
+        updateText();
+    }
+    
+    void updateText()
+    {
         if (Globals.shakeEnabled == true)
         {
             text.text = "Screen Shake: On";
