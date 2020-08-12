@@ -12,8 +12,8 @@ public class Globals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ColorUtility.TryParseHtmlString("D43D3D", out FBSred);
-        ColorUtility.TryParseHtmlString("9BE7FF", out FBSblue);
+        ColorUtility.TryParseHtmlString("#D43D3D", out FBSred);
+        ColorUtility.TryParseHtmlString("#9BE7FF", out FBSblue);
         DontDestroyOnLoad(this.gameObject);
     }
 
