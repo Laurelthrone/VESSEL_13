@@ -38,9 +38,6 @@ public class StationaryFireballSpawner : MonoBehaviour
 
     IEnumerator Spawner()
     {
-        Debug.Log("Coroutine started");
-        Debug.Log(active && dist <= range);
-
         yield return new WaitForSeconds(1);
 
         if (active && dist <= range)
@@ -71,7 +68,6 @@ public class StationaryFireballSpawner : MonoBehaviour
     {
         if (target.gameObject.tag.Equals("Player") && player.getState() == "pound" && active == true)
         {
-            Debug.Log("oof");
             Sounder.PlaySound("break");
             active = false;
             toRed();

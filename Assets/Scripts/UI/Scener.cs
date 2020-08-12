@@ -60,7 +60,6 @@ public class Scener : MonoBehaviour
 
     IEnumerator LoadLevel(string sceneNum)
     {
-        Debug.Log(sceneNum);
         transitionActive = true;
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1.5f);

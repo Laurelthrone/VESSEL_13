@@ -49,7 +49,6 @@ public class Sounder : MonoBehaviour
 
     public static void PlaySound (string clip)
     {
-        Debug.Log(clip);
         audioSrc.PlayOneShot(clipNames[clip]);
     }
 
