@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
         player.gravityScale = gravity;
         Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(14, 10, true);
     }
 
     // Update is called once per frame
@@ -220,7 +221,7 @@ public class Player : MonoBehaviour
 
         if (playerState == "airborne")
         {
-            return "jump";
+            return "jump";  
         }
 
         return "jump";
@@ -289,6 +290,7 @@ public class Player : MonoBehaviour
     {
         if (playerState == "dead")
         {
+            Physics2D.IgnoreLayerCollision(14, 10, true);
             DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
             playerSR.sprite = deadSprite;
             targetRadius = 15f;
@@ -296,6 +298,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            Physics2D.IgnoreLayerCollision(14, 10, false);
             targetRadius = 35f;
             pointLight.color = new Color(0.996164f, 0.8254717f, 1f);
             return false;
