@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 3005349874028459490, guid: eddcadd14d3a2ae4eb45514856633edf,
         type: 3}
       propertyPath: m_Name
-      value: LongBeam
+      value: LongBeam Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3005349874028459503, guid: eddcadd14d3a2ae4eb45514856633edf,
         type: 3}
