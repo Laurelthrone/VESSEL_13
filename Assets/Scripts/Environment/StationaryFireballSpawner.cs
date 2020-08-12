@@ -19,11 +19,11 @@ public class StationaryFireballSpawner : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         thisSpawner = gameObject;
         spawnerIEnumerator = false;
         active = true;
-        blue();
+        toBlue();
     }
 
     void Update()
@@ -45,7 +45,7 @@ public class StationaryFireballSpawner : MonoBehaviour
 
         if (active && dist <= range)
         {
-            blue();
+            toBlue();
             Sounder.PlaySound("shoot");
             Instantiate(prefab, new Vector3(thisSpawner.transform.position.x, thisSpawner.transform.position.y, 0), Quaternion.identity);
             yield return new WaitForSeconds(delay);
@@ -56,9 +56,13 @@ public class StationaryFireballSpawner : MonoBehaviour
             yield return new WaitForSeconds(5);
             Sounder.PlaySound("restart");
             active = true;
-            blue();
+            toBlue();
         }
-        else glow.color = HexConvert.toColor("555555");
+        else
+        {
+            ColorUtility.TryParseHtmlString("555555", out Color color);
+            glow.color = color;
+        }
 
         spawnerIEnumerator = false;
     }
@@ -70,10 +74,16 @@ public class StationaryFireballSpawner : MonoBehaviour
             Debug.Log("oof");
             Sounder.PlaySound("break");
             active = false;
-            red();
+            toRed();
         }
     }
 
-    void red() => glow.color = HexConvert.toColor("D43D3D");
-    void blue() => glow.color = HexConvert.toColor("9BE7FF");
+    void toRed()
+    {
+        glow.color = Globals.FBSred;
+    }
+    void toBlue()
+    {
+        glow.color = Globals.FBSblue;
+    }
 }
