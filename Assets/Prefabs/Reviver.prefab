@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675445525894883309}
   - component: {fileID: 1675445525894883310}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Parametric Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_LightType: 0
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.09856456, g: 0.7264151, b: 0, a: 1}
   m_Intensity: 1.27
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 4536608193007795584}
   - component: {fileID: 4536608193007795590}
   - component: {fileID: 4536608193007795591}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
