@@ -8,14 +8,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Player : MonoBehaviour
 {
 
-    //public
-    [SerializeField] public float speedLimit = 12f;
-    public float dJumpMod;
-    public float speed = 12f;
-    public float jumpheight = 20f;
-    public float gravity;
-    public float groundMargin;
-    public float slamCooldown;
+    //publi
+    public string playerState = "grounded";
 
     public GameObject thisCamera, playerSprite, orb, face;
     public TrailRenderer trail;
@@ -32,12 +26,19 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask Ground;
     [SerializeField] private LayerMask Crates;
 
+    [SerializeField] float speedLimit = 12f;
+    [SerializeField] float dJumpMod;
+    [SerializeField] float speed = 12f;
+    [SerializeField] float jumpheight = 20f;
+    [SerializeField] float gravity;
+    [SerializeField] float groundMargin;
+    [SerializeField] float slamCooldown;
+
     bool grounded;
     bool doSquash;
     bool doubleJump;
 
     string spriteState;
-    public string playerState = "grounded";
 
     float targetRadius;
     float slamTime;
