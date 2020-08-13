@@ -260,8 +260,9 @@ public class Player : MonoBehaviour
             case "Fireball(Clone)":
             case "Fireball":
             case "Spike":
-                if (playerState != "dead") Sounder.PlaySound("death");
+                if (playerState != "dead")
                     {
+                        Sounder.PlaySound("death");
                         playerState = "dead";
                         thisCamera.SendMessage("deathShake"); 
                         squash.SetTrigger("Reset");
@@ -271,6 +272,15 @@ public class Player : MonoBehaviour
                 if (playerState != "victory") Sounder.PlaySound("orb");
                 playerState = "victory";
                 scener.nextScene();
+                break;
+            case "Reviver":
+                if (playerState == "dead")
+                    {
+                        Sounder.PlaySound("revive");
+                        playerState = "grounded";
+                        thisCamera.SendMessage("deathShake");
+
+                    }
                 break;
         }
 
@@ -296,6 +306,7 @@ public class Player : MonoBehaviour
         {
             spriteAnimator.SetFloat("Speed", .99f * spriteAnimator.GetFloat("Speed"));
             Physics2D.IgnoreLayerCollision(14, 10, true);
+            Physics2D.IgnoreLayerCollision(15, 10, false);
             DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
             spriteUpdate();
             targetRadius = 15f;
@@ -304,6 +315,7 @@ public class Player : MonoBehaviour
         else
         {
             Physics2D.IgnoreLayerCollision(14, 10, false);
+            Physics2D.IgnoreLayerCollision(15, 10, true);
             targetRadius = 35f;
             pointLight.color = new Color(0.996164f, 0.8254717f, 1f);
             return false;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sounder : MonoBehaviour
 {
 
-    public static AudioClip jumpSound, dropSound, landSound, deathSound, orbSound, loadSound, boxSound, breakSound, restartSound, shootSound;
+    public static AudioClip jumpSound, dropSound, landSound, deathSound, orbSound, loadSound, boxSound, breakSound, restartSound, shootSound, reviveSound;
     static AudioSource audioSrc;
     static IDictionary<string, AudioClip> clipNames = new Dictionary<string, AudioClip>();
     static bool onlyOnce = true;
@@ -23,6 +23,7 @@ public class Sounder : MonoBehaviour
         boxSound = Resources.Load<AudioClip>("box");
         breakSound = Resources.Load<AudioClip>("break");
         restartSound = Resources.Load<AudioClip>("restart");
+        reviveSound = Resources.Load<AudioClip>("revive");
         audioSrc = GetComponent<AudioSource>();
         audioSrc.volume = .5f;
 
@@ -37,6 +38,7 @@ public class Sounder : MonoBehaviour
             clipNames.Add("break", breakSound);
             clipNames.Add("restart", restartSound);
             clipNames.Add("shoot", shootSound);
+            clipNames.Add("revive", reviveSound);
             onlyOnce = false;
         }
     }
