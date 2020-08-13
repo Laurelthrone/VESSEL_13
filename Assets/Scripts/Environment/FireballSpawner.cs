@@ -17,11 +17,6 @@ public class FireballSpawner : MonoBehaviour
         StartCoroutine(Spawner());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     IEnumerator Spawner()
     {
       while(true)

@@ -13,12 +13,6 @@ public class Wallbounce : MonoBehaviour
         playerScript = player.GetComponent(typeof(Player)) as Player;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnCollisionEnter2D(Collision2D target)
     {
         if (target.gameObject.tag.Equals("Player") && playerScript.getState() == "pound")

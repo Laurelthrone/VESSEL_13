@@ -16,10 +16,4 @@ public class BrokenCrateShard : MonoBehaviour
         }
         GameObject.Destroy(holder, 3f);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

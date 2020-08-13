@@ -9,7 +9,6 @@ public class ToggleScreenShake : MonoBehaviour
     public Button button;
     private Text text;
 
-    // Update is called once per frame
     void Start()
     {
         text = GetComponentInChildren<Text>();

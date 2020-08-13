@@ -8,7 +8,6 @@ public class ResumeButton : MonoBehaviour
 
     public Button button;
     
-    // Update is called once per frame
     void Start()
     {
         button.onClick.AddListener(ResumeGame);

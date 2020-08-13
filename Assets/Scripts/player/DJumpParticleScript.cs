@@ -14,12 +14,6 @@ public class DJumpParticleScript : MonoBehaviour
         dJumpParticle = GetComponent<ParticleSystem>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public static void hideParticle()
     {
         ParticleSystem.EmissionModule module = dJumpParticle.emission;

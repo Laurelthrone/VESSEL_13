@@ -26,9 +26,14 @@ public class Scener : MonoBehaviour
     {
         if (Input.anyKeyDown && SceneManager.GetActiveScene().name != "titlescreen")
         {
-            if (Input.GetKeyDown("r")) StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
+            if (Input.GetKeyDown("r")) reloadScene();
             if (Input.GetKeyDown("1")) nextScene();
         }
+    }
+
+    public void reloadScene()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
     }
 
     public void nextScene()

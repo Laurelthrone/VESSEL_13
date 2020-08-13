@@ -8,7 +8,6 @@ public class DesktopButton : MonoBehaviour
 
     public Button button;
 
-    // Update is called once per frame
     void Start()
     {
         button.onClick.AddListener(Desktop);
