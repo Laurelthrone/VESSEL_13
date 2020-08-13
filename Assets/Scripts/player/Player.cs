@@ -26,10 +26,10 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask Ground;
     [SerializeField] private LayerMask Crates;
 
-    [SerializeField] float speedLimit = 12f;
+    [SerializeField] float speedLimit;
     [SerializeField] float dJumpMod;
-    [SerializeField] float speed = 12f;
-    [SerializeField] float jumpheight = 20f;
+    [SerializeField] float speed;
+    [SerializeField] float jumpheight;
     [SerializeField] float gravity;
     [SerializeField] float groundMargin;
     [SerializeField] float slamCooldown;
@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     bool grounded;
     bool doSquash;
     bool doubleJump;
+    bool initialized = false;
 
     string spriteState;
 
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
     float slamTime;
     float ymov;
     float crateMargin;
+    
     
     private Vector2 targetPos;
     
@@ -57,16 +59,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
-        crateMargin = groundMargin * 2;
-        player = GetComponent<Rigidbody2D> ();
-        capsule = GetComponent<CapsuleCollider2D>();  
-        playerSR = playerSprite.GetComponent<SpriteRenderer>();
-        playerFace = face.GetComponent<SpriteRenderer>();
-        spriteAnimator = playerSprite.GetComponent<Animator>();
-        player.gravityScale = gravity;
-        Physics2D.IgnoreLayerCollision(alwaysIgnoreLayer, playerLayer);
-        Physics2D.IgnoreLayerCollision(deathwallLayer, playerLayer, true);
-
         ColorUtility.TryParseHtmlString("#CF616D", out Pound);
         ColorUtility.TryParseHtmlString("#FFCEF8", out Normal);
         ColorUtility.TryParseHtmlString("#87639A", out Dead);
@@ -76,11 +68,31 @@ public class Player : MonoBehaviour
         playerColors.Add("victory", Normal);
         playerColors.Add("grounded", Normal);
         playerColors.Add("dead", Dead);
+
+        crateMargin = groundMargin * 2;
+        Physics2D.IgnoreLayerCollision(alwaysIgnoreLayer, playerLayer);
+        Physics2D.IgnoreLayerCollision(deathwallLayer, playerLayer, true);
+
+        //Initialize components separately to reduce lag on first frame due to slow operations
+        StartCoroutine(InitComponents());
+    }
+
+    IEnumerator InitComponents()
+    {
+        yield return new WaitForSecondsRealtime(.1f);
+        player = GetComponent<Rigidbody2D>();
+        player.gravityScale = gravity;
+        capsule = GetComponent<CapsuleCollider2D>();
+        playerSR = playerSprite.GetComponent<SpriteRenderer>();
+        playerFace = face.GetComponent<SpriteRenderer>();
+        spriteAnimator = playerSprite.GetComponent<Animator>();
+        initialized = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!initialized) return;
 
         if(playerState == "victory")
         {

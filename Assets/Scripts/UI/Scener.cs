@@ -15,10 +15,7 @@ public class Scener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scene = SceneManager.GetActiveScene();
-        currentScene = scene.name;
-        if(int.TryParse(currentScene,out int a)) Globals.currentScene = currentScene;
-        transitionActive = false;
+        StartCoroutine(Init());
     }
         
     // Update is called once per frame
@@ -68,6 +65,16 @@ public class Scener : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(sceneNum);
+    }
+
+    IEnumerator Init()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        scene = SceneManager.GetActiveScene();
+        currentScene = scene.name;
+        if (int.TryParse(currentScene, out int a)) Globals.currentScene = currentScene;
+        transitionActive = false;
     }
 
     public void GoToScene(string target)
