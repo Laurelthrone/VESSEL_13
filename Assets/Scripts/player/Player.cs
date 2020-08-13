@@ -104,11 +104,6 @@ public class Player : MonoBehaviour
             if ((squash.GetCurrentAnimatorStateInfo(0)).IsName("Player_Pound")) squash.SetTrigger("Reset");
         }
 
-        if (Input.anyKeyDown)
-        {
-            abilities(ref ymov);
-        }
-
         isGrounded();
         
         doParticles();
@@ -117,6 +112,11 @@ public class Player : MonoBehaviour
 
         float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
         ymov = Input.GetAxis("Vertical") * Time.deltaTime;
+        if (Input.anyKeyDown)
+        {
+            abilities(ref ymov);
+        }
+
         movePlayer(xmov, ymov);
 
         //Cap velocity at speed limit
