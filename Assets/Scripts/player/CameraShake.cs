@@ -13,12 +13,6 @@ public class CameraShake : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void deathShake()
     {
         if (Globals.shakeEnabled) animator.SetTrigger("Death");
