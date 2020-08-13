@@ -5129,13 +5129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8af811f7ca9b449bca35b27f357992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedLimit: 20.5
-  dJumpMod: 1
-  speed: 24.4
-  jumpheight: 14.01
-  gravity: 2
-  groundMargin: 1.3
-  slamCooldown: 0.05
+  playerState: grounded
   thisCamera: {fileID: 4207511363699816109}
   playerSprite: {fileID: 1969549077038360360}
   orb: {fileID: 0}
@@ -5155,7 +5149,14 @@ MonoBehaviour:
   Crates:
     serializedVersion: 2
     m_Bits: 2048
-  playerState: grounded
+  speedLimit: 20.5
+  dJumpMod: 1
+  speed: 24.4
+  jumpheight: 14.01
+  gravity: 2
+  groundMargin: 1.3
+  slamCooldown: 0.05
+  wallbounceWindow: 0.2
 --- !u!50 &4207511363367179373
 Rigidbody2D:
   serializedVersion: 4
