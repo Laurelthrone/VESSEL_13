@@ -6,7 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public static Animator pauseanim;
-    public static float deltatime;
+    static float deltatime;
 
     // Start is called before the first frame update
     void Start()

@@ -6,6 +6,7 @@ public class FireballSpawner : MonoBehaviour
 {
     public float lowerLimit;
     public float upperLimit;
+
     public GameObject prefab;
     private GameObject thisSpawner;
 

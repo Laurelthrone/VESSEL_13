@@ -8,8 +8,6 @@ public class Sounder : MonoBehaviour
     public static AudioClip jumpSound, dropSound, landSound, deathSound, orbSound, loadSound, boxSound, breakSound, restartSound, shootSound, reviveSound;
     static AudioSource audioSrc;
     static IDictionary<string, AudioClip> clipNames = new Dictionary<string, AudioClip>();
-    static bool onlyOnce = true;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +25,7 @@ public class Sounder : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
         audioSrc.volume = .5f;
 
-        if (onlyOnce == true)
+        if (!clipNames.ContainsKey(("jump")))
         {
             clipNames.Add("jump", jumpSound);
             clipNames.Add("drop", dropSound);
@@ -39,7 +37,6 @@ public class Sounder : MonoBehaviour
             clipNames.Add("restart", restartSound);
             clipNames.Add("shoot", shootSound);
             clipNames.Add("revive", reviveSound);
-            onlyOnce = false;
         }
     }
 

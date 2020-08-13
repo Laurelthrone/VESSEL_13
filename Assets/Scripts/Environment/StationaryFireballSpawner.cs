@@ -7,21 +7,24 @@ public class StationaryFireballSpawner : MonoBehaviour
 {
 
     public Player player;
-    private bool active = true;
     public float delay;
     public GameObject prefab;
-    private GameObject thisSpawner;
-    private BoxCollider2D trigger;
-    public Light2D glow;
-    float dist;
     public float range;
-    bool spawnerIEnumerator;
+    public Light2D glow;
+
+    private bool active = true;
+    private BoxCollider2D trigger;
+    private float dist;
+    private bool coroutineActive;
+    private Color FBSred, FBSblue, FBSgrey;
 
     // Start is called before the first frame update
     void Start()
-    { 
-        thisSpawner = gameObject;
-        spawnerIEnumerator = false;
+    {
+        ColorUtility.TryParseHtmlString("#D43D3D", out FBSred);
+        ColorUtility.TryParseHtmlString("#9BE7FF", out FBSblue);
+        ColorUtility.TryParseHtmlString("#555555", out FBSgrey);
+        coroutineActive = false;
         active = true;
         toBlue();
     }
@@ -29,10 +32,10 @@ public class StationaryFireballSpawner : MonoBehaviour
     void Update()
     {
         dist = Vector2.Distance(player.transform.position, gameObject.transform.position);
-        if(!spawnerIEnumerator)
+        if(!coroutineActive)
         {
             StartCoroutine(Spawner());
-            spawnerIEnumerator = true;
+            coroutineActive = true;
         }
     }
 
@@ -44,7 +47,7 @@ public class StationaryFireballSpawner : MonoBehaviour
         {
             toBlue();
             Sounder.PlaySound("shoot");
-            Instantiate(prefab, new Vector3(thisSpawner.transform.position.x, thisSpawner.transform.position.y, 0), Quaternion.identity);
+            Instantiate(prefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
             yield return new WaitForSeconds(delay);
         }
 
@@ -57,11 +60,10 @@ public class StationaryFireballSpawner : MonoBehaviour
         }
         else
         {
-            ColorUtility.TryParseHtmlString("555555", out Color color);
-            glow.color = color;
+            glow.color = FBSgrey;
         }
 
-        spawnerIEnumerator = false;
+        coroutineActive = false;
     }
 
     void OnTriggerEnter2D(Collider2D target)
@@ -76,10 +78,10 @@ public class StationaryFireballSpawner : MonoBehaviour
 
     void toRed()
     {
-        glow.color = Globals.FBSred;
+        glow.color = FBSred;
     }
     void toBlue()
     {
-        glow.color = Globals.FBSblue;
+        glow.color = FBSblue;
     }
 }

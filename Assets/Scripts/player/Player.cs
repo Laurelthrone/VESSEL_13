@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
 
     Color Pound, Normal, Dead;
 
+    const int playerLayer = 10, alwaysIgnoreLayer = 9, deathwallLayer = 14;
+
     // Start is called before the first frame update
     void Start()    
     {
@@ -61,8 +63,8 @@ public class Player : MonoBehaviour
         playerFace = face.GetComponent<SpriteRenderer>();
         spriteAnimator = playerSprite.GetComponent<Animator>();
         player.gravityScale = gravity;
-        Physics2D.IgnoreLayerCollision(9, 10);
-        Physics2D.IgnoreLayerCollision(14, 10, true);
+        Physics2D.IgnoreLayerCollision(alwaysIgnoreLayer, playerLayer);
+        Physics2D.IgnoreLayerCollision(deathwallLayer, playerLayer, true);
 
         ColorUtility.TryParseHtmlString("#CF616D", out Pound);
         ColorUtility.TryParseHtmlString("#FFCEF8", out Normal);
@@ -87,9 +89,6 @@ public class Player : MonoBehaviour
             playerFace.sprite = faceWin;
             return;
         }
-
-        float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
-        ymov = Input.GetAxis("Vertical") * Time.deltaTime;
 
         if (pointLight.pointLightOuterRadius != targetRadius)
         {
@@ -116,9 +115,11 @@ public class Player : MonoBehaviour
 
         spriteUpdate();
 
+        float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
+        ymov = Input.GetAxis("Vertical") * Time.deltaTime;
         movePlayer(xmov, ymov);
 
-        //If moving above speed limit,
+        //Cap velocity at speed limit
         if (player.velocity.x > speedLimit) player.velocity = new Vector2(speedLimit, player.velocity.y);
         if (player.velocity.x < -speedLimit) player.velocity = new Vector2(-speedLimit, player.velocity.y);
 
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour
     {
         return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - margin), mask);
     }
-
+            
     private void isGrounded()
     {
         bool grounded = groundDetect(Ground, groundMargin);
@@ -250,7 +251,7 @@ public class Player : MonoBehaviour
         return playerState;
     }
 
-    //This handles interactions with interactable objects. Really need to rework this because god just look at this code it's an embarrassment.
+    //Really need to rework this because god just look at this
     private void OnTriggerEnter2D(Collider2D trig)
     {
         if (playerState != "victory")   
@@ -305,8 +306,7 @@ public class Player : MonoBehaviour
         if (playerState == "dead")
         {
             spriteAnimator.SetFloat("Speed", .99f * spriteAnimator.GetFloat("Speed"));
-            Physics2D.IgnoreLayerCollision(14, 10, true);
-            Physics2D.IgnoreLayerCollision(15, 10, false);
+            Physics2D.IgnoreLayerCollision(deathwallLayer, playerLayer, true);
             DJumpParticleScript.burstParticle(.25f, .1f, .3f, 2, 70);
             spriteUpdate();
             targetRadius = 15f;
@@ -314,8 +314,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Physics2D.IgnoreLayerCollision(14, 10, false);
-            Physics2D.IgnoreLayerCollision(15, 10, true);
+            Physics2D.IgnoreLayerCollision(deathwallLayer, playerLayer, false);
             targetRadius = 35f;
             pointLight.color = new Color(0.996164f, 0.8254717f, 1f);
             return false;
@@ -332,6 +331,7 @@ public class Player : MonoBehaviour
         playerState = "pound";
     }
 
+    //Bounce off side of crates
     private void crateBroken()
     {
         thisCamera.SendMessage("land");

@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class crate : MonoBehaviour
+public class Crate : MonoBehaviour
 {
 
-    //Public
     public GameObject player;
     public GameObject prefab;
     
-    //Private
     private GameObject thisCrate;
     private Rigidbody2D body;
     private BoxCollider2D box;
