@@ -33,11 +33,13 @@ public class Player : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float groundMargin;
     [SerializeField] float slamCooldown;
+    [SerializeField] float wallbounceWindow;
 
     bool grounded;
     bool doSquash;
     bool doubleJump;
     bool initialized = false;
+    bool canWallbounce = false;
 
     string spriteState;
 
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour
     float slamTime;
     float ymov;
     float crateMargin;
+    float storeXvel;
     
     
     private Vector2 targetPos;
@@ -92,6 +95,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(canWallbounce);
+
         if (!initialized) return;
 
         if(playerState == "victory")
@@ -110,8 +115,12 @@ public class Player : MonoBehaviour
 
         if (isDead()) return;
 
-        if (playerState == "pound") trail.enabled = false;
-        else 
+        if (playerState == "pound")
+        {
+            trail.enabled = false;
+            if (canWallbounce) wallbounce();
+        }
+        else
         {
             trail.enabled = true;
             if ((squash.GetCurrentAnimatorStateInfo(0)).IsName("Player_Pound")) squash.SetTrigger("Reset");
@@ -309,10 +318,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    //This literally just plays the landing sound when you hit something
-    private void OnCollisionEnter2D()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+       storeXvel = player.velocity.x;
        if (Scener.transitionActive == false) Sounder.PlaySound("land");
+       if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
+    }
+
+    IEnumerator allowWallbounce()
+    {
+        canWallbounce = true;
+        yield return new WaitForSeconds(wallbounceWindow);
+        canWallbounce = false;
     }
 
     //If the light radius isn't the target radius, shift the radius in the right direction
@@ -368,9 +385,11 @@ public class Player : MonoBehaviour
 
     private void wallbounce()
     {
+        if (storeXvel < 10 && storeXvel > -10) return;
         thisCamera.SendMessage("land");
-        player.velocity = new Vector2(player.velocity.x * 1.5f, 30);
+        player.velocity = new Vector2(storeXvel * 1.5f, 30);
         playerState = "airborne";
         doubleJump = true;
+        canWallbounce = false;
     }
 }
