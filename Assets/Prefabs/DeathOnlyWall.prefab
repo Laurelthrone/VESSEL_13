@@ -4840,7 +4840,7 @@ GameObject:
   - component: {fileID: 4205541871040582836}
   m_Layer: 14
   m_Name: DeathOnlyWall
-  m_TagString: Untagged
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

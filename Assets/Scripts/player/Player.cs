@@ -251,40 +251,49 @@ public class Player : MonoBehaviour
         return playerState;
     }
 
-    //Really need to rework this because god just look at this
     private void OnTriggerEnter2D(Collider2D trig)
     {
         if (playerState != "victory")   
-        switch (trig.name)
+            switch (trig.tag)
+            {
+                case "Hazard":
+                    die();
+                    break;
+                case "Victory":
+                    win();
+                    break;
+                case "Revive":
+                    revive();
+                    break;
+            }
+    }
+
+    void die()
+    {
+        if (playerState != "dead")
         {
-            case "LeftFireball(Clone)":
-            case "Fireball(Clone)":
-            case "Fireball":
-            case "Spike":
-                if (playerState != "dead")
-                    {
-                        Sounder.PlaySound("death");
-                        playerState = "dead";
-                        thisCamera.SendMessage("deathShake"); 
-                        squash.SetTrigger("Reset");
-                    }
-                break;
-            case "ORB":
-                if (playerState != "victory") Sounder.PlaySound("orb");
-                playerState = "victory";
-                scener.nextScene();
-                break;
-            case "Reviver":
-                if (playerState == "dead")
-                    {
-                        Sounder.PlaySound("revive");
-                        playerState = "grounded";
-                        thisCamera.SendMessage("deathShake");
-
-                    }
-                break;
+            Sounder.PlaySound("death");
+            playerState = "dead";
+            thisCamera.SendMessage("deathShake");
+            squash.SetTrigger("Reset");
         }
+    }
 
+    void win()
+    {
+        Sounder.PlaySound("orb");
+        playerState = "victory";
+        scener.nextScene();
+    }
+
+    void revive()
+    {
+        if (playerState == "dead")
+        {
+            Sounder.PlaySound("revive");
+            playerState = "grounded";
+            thisCamera.SendMessage("deathShake");
+        }
     }
 
     //This literally just plays the landing sound when you hit something
