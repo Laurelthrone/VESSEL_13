@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
     
     private Vector2 targetPos;
     
-    Animator spriteAnimator;
+    Animator spriteAnimator, chromaticAberration;
     Dictionary<string, Color> playerColors = new Dictionary<string, Color>();
 
     Color Pound, Normal, Dead;
@@ -82,13 +83,17 @@ public class Player : MonoBehaviour
 
     IEnumerator InitComponents()
     {
-        yield return new WaitForSecondsRealtime(.1f);
+        yield return new WaitForEndOfFrame();
         player = GetComponent<Rigidbody2D>();
         player.gravityScale = gravity;
         capsule = GetComponent<CapsuleCollider2D>();
+        yield return new WaitForEndOfFrame();
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
         playerFace = face.GetComponent<SpriteRenderer>();
         spriteAnimator = playerSprite.GetComponent<Animator>();
+        yield return new WaitForEndOfFrame();
+        chromaticAberration = FindObjectOfType<Volume>().GetComponent<Animator>();
+        chromaticAberration.SetFloat("Speed", -1f);
         initialized = true;
     }
 
@@ -187,7 +192,7 @@ public class Player : MonoBehaviour
     private void doParticles()
     {
         //Particle scripts
-        if (playerState == "pound") DJumpParticleScript.burstParticle(.6f, .5f, .5f, 6);
+        if (playerState == "pound") DJumpParticleScript.burstParticle(.7f, .5f, .5f, 6);
         else if (!doubleJump || grounded) DJumpParticleScript.hideParticle();
         else DJumpParticleScript.showParticle();
     }
@@ -286,6 +291,7 @@ public class Player : MonoBehaviour
     {
         if (playerState != "dead")
         {
+            chromaticAberration.SetFloat("Speed", 1f);
             Sounder.PlaySound("death");
             playerState = "dead";
             thisCamera.SendMessage("deathShake");
@@ -314,6 +320,7 @@ public class Player : MonoBehaviour
     {
         if (playerState == "dead")
         {
+            chromaticAberration.SetFloat("Speed", -1f);
             Sounder.PlaySound("revive");
             playerState = "grounded";
             thisCamera.SendMessage("deathShake");
