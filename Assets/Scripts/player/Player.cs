@@ -156,8 +156,7 @@ public class Player : MonoBehaviour
             
     private void isGrounded()
     {
-        bool grounded = groundDetect(Ground, groundMargin);
-        if (grounded && playerState != "victory")
+        if (groundDetect(Ground, groundMargin) && playerState != "victory")
         {
             land();
         }
@@ -214,8 +213,10 @@ public class Player : MonoBehaviour
 
     private void abilities(ref float ymov)
     {
+        //holy shit please go back and establish some kind of consistency between "slam," "pound," and "drop" now that the move is officially called a slam
         if (playerState != "pound" && !grounded && Input.GetButtonDown("Slam"))
         {
+            //Check if slam is available
             if (slamTime <= Time.time)
             {
                 squash.SetTrigger("Pound");
@@ -231,18 +232,22 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (grounded && Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            jump(ref ymov, jumpheight);
-            slamTime = slamCooldown + Time.time;
-            return;
-        }
 
-        if (!grounded && doubleJump == true && Input.GetButtonDown("Jump"))
-        {
-            jump(ref ymov, jumpheight * dJumpMod);
-            slamTime = slamCooldown + Time.time;
-            return;
+            if (grounded)
+            {
+                jump(ref ymov, jumpheight);
+                slamTime = slamCooldown + Time.time;
+                return;
+            }
+
+            if (!grounded && doubleJump == true)
+            {
+                jump(ref ymov, jumpheight * dJumpMod);
+                slamTime = slamCooldown + Time.time;
+                return;
+            }
         }
     }
 
