@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     //publi
     public string playerState = "grounded";
 
-    public GameObject thisCamera, playerSprite, orb, face;
+    public GameObject thisCamera, playerSprite, face;
     public TrailRenderer trail;
     public Light2D pointLight;
     public Scener scener;
@@ -97,16 +97,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log(canWallbounce);
 
-        if (!initialized) return;
-
-        if(playerState == "victory")
-        {
-            spriteUpdate();
-            targetPos = new Vector2(orb.transform.position.x, orb.transform.position.y);
-            transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), targetPos, 7 * Time.deltaTime);
-            playerFace.sprite = faceWin;
-            return;
-        }
+        if (!initialized || playerState == "victory") return;
 
         if (pointLight.pointLightOuterRadius != targetRadius)
         {
@@ -282,6 +273,7 @@ public class Player : MonoBehaviour
                     die();
                     break;
                 case "Victory":
+                    StartCoroutine(pullTo(trig.transform.position));
                     win();
                     break;
                 case "Revive":
@@ -298,6 +290,16 @@ public class Player : MonoBehaviour
             playerState = "dead";
             thisCamera.SendMessage("deathShake");
             squash.SetTrigger("Reset");
+        }
+    }
+
+    IEnumerator pullTo(Vector2 point)
+    {
+        while(player.position != point)
+        {
+            transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), point, 7 * Time.deltaTime);
+            playerFace.sprite = faceWin;
+            yield return new WaitForEndOfFrame();
         }
     }
 
