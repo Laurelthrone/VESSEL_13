@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -46
   m_Sprite: {fileID: 21300000, guid: baa7c1f828e5b994e8b5f7f9b7738e61, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.0024728775, a: 0.6431373}
+  m_Color: {r: 0.495283, g: 0.9950581, b: 1, a: 0.6431373}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_LightType: 0
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 0.09856456, g: 0.7264151, b: 0, a: 1}
+  m_Color: {r: 0.4901961, g: 0.9334468, b: 1, a: 1}
   m_Intensity: 1.27
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
@@ -426,7 +426,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.20392156, g: 1, b: 0.28111374, a: 1}
+      maxColor: {r: 0.20392156, g: 0.99999964, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1566,7 +1566,7 @@ ParticleSystem:
   UVModule:
     serializedVersion: 2
     enabled: 0
-    mode: 0
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1684,7 +1684,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 21300000, guid: 8f92e8919e4145640ac5916acada6bec, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

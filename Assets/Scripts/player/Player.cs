@@ -208,6 +208,7 @@ public class Player : MonoBehaviour
             ymov = (jumpheight * 100 + Mathf.Abs(player.velocity.y));
             player.velocity = new Vector2(player.velocity.x, 0);
             if (!grounded) doubleJump = false;
+            slamTime = slamCooldown + Time.time;
         }
     }
 
@@ -238,14 +239,12 @@ public class Player : MonoBehaviour
             if (grounded)
             {
                 jump(ref ymov, jumpheight);
-                slamTime = slamCooldown + Time.time;
                 return;
             }
 
             if (!grounded && doubleJump == true)
             {
                 jump(ref ymov, jumpheight * dJumpMod);
-                slamTime = slamCooldown + Time.time;
                 return;
             }
         }
