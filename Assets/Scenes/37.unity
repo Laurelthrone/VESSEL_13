@@ -1351,22 +1351,14 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 777372133}
     m_ColliderPaths:
-    - - X: 680000100
-        Y: -120000041
-      - X: 680000100
-        Y: -39999959
-      - X: 680000041
-        Y: -39999900
-      - X: 659999959
-        Y: -39999900
-      - X: 659999900
-        Y: -39999959
-      - X: 659999900
-        Y: -120000041
-      - X: 659999959
-        Y: -120000100
-      - X: 680000041
-        Y: -120000100
+    - - X: 680000000
+        Y: -40000000
+      - X: 660000000
+        Y: -40000000
+      - X: 660000000
+        Y: -120000000
+      - X: 680000000
+        Y: -120000000
     - - X: 600000000
         Y: -300000000
       - X: 580000000
@@ -1377,10 +1369,10 @@ CompositeCollider2D:
         Y: -340000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 67.99998, y: -12.00001}
-      - {x: 67.99998, y: -3.99999}
-      - {x: 65.999985, y: -4.0000253}
-      - {x: 66.00002, y: -12.00001}
+    - - {x: 67.99997, y: -12}
+      - {x: 67.99997, y: -4}
+      - {x: 66, y: -4.000029}
+      - {x: 66.00003, y: -12}
     - - {x: 59.99997, y: -34}
       - {x: 59.99997, y: -30}
       - {x: 58, y: -30.000029}
@@ -64422,78 +64414,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1555194075
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1555194076}
-  - component: {fileID: 1555194077}
-  m_Layer: 0
-  m_Name: Freeform Light 2D (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1555194076
+--- !u!4 &1555194076 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2674746153228662516}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555194075}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.068, y: -3.97, z: 0}
-  m_LocalScale: {x: 0.071089685, y: 1.9267875, z: 1}
-  m_Children: []
-  m_Father: {fileID: 929698267}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1555194077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555194075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LightType: 0
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 1
-  m_Color: {r: 0.17801023, g: 1, b: 0, a: 1}
-  m_Intensity: 0.8
-  m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
-  m_LightOrder: 37
-  m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 0
-  m_ShadowVolumeIntensity: 0
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_PointLightDistance: 3
-  m_PointLightQuality: 1
-  m_ShapeLightParametricSides: 4
-  m_ShapeLightParametricAngleOffset: 0.1
-  m_ShapeLightParametricRadius: 1.46
-  m_ShapeLightFalloffSize: 0.57
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &1621966633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134813,6 +134739,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c643d000a14035747b8eef7022f0b368, type: 3}
+--- !u!1001 &2674746153228662516
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 929698267}
+    m_Modifications:
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 33.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674746151948457519, guid: 738522e0526d1d748bfee71fa5e9a2bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Wallbouncer Light
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 738522e0526d1d748bfee71fa5e9a2bf, type: 3}
 --- !u!1001 &5301499693386239178
 PrefabInstance:
   m_ObjectHideFlags: 0
