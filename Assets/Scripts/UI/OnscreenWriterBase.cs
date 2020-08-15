@@ -4,12 +4,12 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Writer : MonoBehaviour
+public class OnscreenWriterBase : MonoBehaviour
 {
-    protected TextWriter processor;
+    protected StringToCharStream processor;
     
     protected Text textfield;
-
+    
     protected int nlines;
     protected int currentLine = 0;
     
@@ -17,7 +17,7 @@ public class Writer : MonoBehaviour
     
     protected float waittime = 2;
 
-
+    protected bool runLoop = true;
     protected bool coroutineActive = false;
 
 
@@ -25,7 +25,7 @@ public class Writer : MonoBehaviour
     {
         textfield = gameObject.GetComponent<Text>();
         textfield.text = "";
-        processor = new TextWriter("");
+        processor = new StringToCharStream("");
     }
 
     protected IEnumerator WriteLineAsChars(float waittime, string textsound)
@@ -34,22 +34,45 @@ public class Writer : MonoBehaviour
         textfield.text = "";
         for (int i = 0; i < processor.getLength(); i++)
         {
+            if (!runLoop) break;
             char write = processor.returnText();
             textfield.text += write;
             if (write != ' ') Sounder.PlaySound(textsound);
             yield return new WaitForSeconds(.1f);
         }
+        currentLine++;
+        UnityEngine.Debug.Log(currentLine);
+        UnityEngine.Debug.Log(nlines);
+        if (currentLine >= nlines) yield return new WaitForSeconds(waittime);
         coroutineActive = false;
     }
 
     void Update()
     {
-        if (!coroutineActive && currentLine < nlines)
+        if (Player.playerState == "dead")
         {
-            processor.changeText(lines[currentLine]);
-            StartCoroutine(WriteLineAsChars(waittime, "text"));
-            currentLine++;
-            coroutineActive = true;
+            endDialog();
+            return;
         }
+
+        if (!coroutineActive)
+        {
+            if (currentLine < nlines)
+            {
+                processor.changeText(lines[currentLine]);
+                StartCoroutine(WriteLineAsChars(waittime, "text"));
+                coroutineActive = true;
+            } else
+            {
+                textfield.text = "";
+                runLoop = false;
+            }
+        }
+    }
+
+    protected void endDialog()
+    {
+        textfield.text = "";
+        runLoop = false;
     }
 }

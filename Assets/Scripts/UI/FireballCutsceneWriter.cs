@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class FireballCutsceneWriter : Writer
+public class FireballCutsceneWriter : OnscreenWriterBase
 {
     // Start is called before the first frame update
     void Start()

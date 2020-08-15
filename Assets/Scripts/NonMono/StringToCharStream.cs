@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextWriter
+public class StringToCharStream
 {
     private string toWrite;
     private int length;
     private int step;
 
-    public TextWriter(string a)
+    public StringToCharStream(string a)
     {
         toWrite = a;
         length = toWrite.Length;

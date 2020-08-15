@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 {
 
     //publi
-    public string playerState = "grounded";
+    public static string playerState = "grounded";
 
     public GameObject thisCamera, playerSprite, face;
     public TrailRenderer trail;
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
+        playerState = "grounded";
         ColorUtility.TryParseHtmlString("#CF616D", out Slam);
         ColorUtility.TryParseHtmlString("#FFCEF8", out Normal);
         ColorUtility.TryParseHtmlString("#87639A", out Dead);
