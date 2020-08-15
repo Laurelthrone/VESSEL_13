@@ -1589,7 +1589,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.43137255, g: 0.45882353, b: 0.7176471, a: 1}
   m_Origin: {x: -104, y: -134, z: 0}
   m_Size: {x: 427, y: 342, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -2147,7 +2147,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.17801023, g: 1, b: 0, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 1.77
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -64392,7 +64392,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+  m_Color: {r: 0.48380208, g: 0.49961495, b: 0.6792453, a: 1}
   m_Origin: {x: -217, y: -295, z: 0}
   m_Size: {x: 492, y: 627, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -64414,12 +64414,78 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &1555194076 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 2674746153228662516}
+--- !u!1 &1555194075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1555194076}
+  - component: {fileID: 1555194077}
+  m_Layer: 0
+  m_Name: Wallbouncer Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1555194076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555194075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 33.068, y: -3.97, z: 0}
+  m_LocalScale: {x: 0.123518325, y: 1.9267875, z: 1}
+  m_Children: []
+  m_Father: {fileID: 929698267}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1555194077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555194075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 0
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 1
+  m_Color: {r: 0.17801023, g: 1, b: 0, a: 1}
+  m_Intensity: 1.77
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 37
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 4
+  m_ShapeLightParametricAngleOffset: 0.1
+  m_ShapeLightParametricRadius: 1.46
+  m_ShapeLightFalloffSize: 0.57
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &1621966633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134579,7 +134645,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4295123, g: 0.45738682, b: 0.7169812, a: 1}
   m_Origin: {x: -140, y: -219, z: 0}
   m_Size: {x: 287, y: 444, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -134739,75 +134805,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c643d000a14035747b8eef7022f0b368, type: 3}
---- !u!1001 &2674746153228662516
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 929698267}
-    m_Modifications:
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 33.068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674746151948457519, guid: 738522e0526d1d748bfee71fa5e9a2bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Wallbouncer Light
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 738522e0526d1d748bfee71fa5e9a2bf, type: 3}
 --- !u!1001 &5301499693386239178
 PrefabInstance:
   m_ObjectHideFlags: 0
