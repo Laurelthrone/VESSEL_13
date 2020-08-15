@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4881276887626607205}
   - component: {fileID: 4881276887626607207}
   m_Layer: 0
-  m_Name: Postprocessor
+  m_Name: 1__Postprocessor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   isGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: fcf0efece7b64d143bbc2cf8968a0e36, type: 2}
 --- !u!114 &4881276887626607205
 MonoBehaviour:
