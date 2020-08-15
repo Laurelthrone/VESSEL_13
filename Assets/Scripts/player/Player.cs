@@ -334,20 +334,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-       storeXvel = player.velocity.x;
-       if (Scener.transitionActive == false) Sounder.PlaySound("land");
-       if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
-    }
-
-    IEnumerator allowWallbounce()
-    {
-        canWallbounce = true;
-        yield return new WaitForSeconds(wallbounceWindow);
-        canWallbounce = false;
-    }
-
     //If the light radius isn't the target radius, shift the radius in the right direction
     private void shiftLight()
     {
@@ -396,11 +382,37 @@ public class Player : MonoBehaviour
         doubleJump = true;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Store velocity on contact with wall to apply when wallbounce occurs
+        storeXvel = player.velocity.x;
+        if (Scener.transitionActive == false) Sounder.PlaySound("land");
+        if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
+    }
+
+    IEnumerator allowWallbounce()
+    {
+        /*Main update function contains 
+            "if(canWallbounce && playerState == "slam") wallbounce();
+          This function enables wallbouncing for a short period after touching a wallbouncer
+        */
+        canWallbounce = true;
+        yield return new WaitForSeconds(wallbounceWindow);
+        canWallbounce = false;
+    }
+
     private void wallbounce()
     {
+        //Don't wallbounce if player didn't have enough velocity
         if (Math.Abs(storeXvel) < 5) return;
+        
+        //Disable the slam zoom
         thisCamera.SendMessage("land");
+        
+        //Apply the bounce velocity
         player.velocity = new Vector2(storeXvel * 1.5f, 30);
+
+        //Set player state
         playerState = "airborne";
         doubleJump = true;
         canWallbounce = false;

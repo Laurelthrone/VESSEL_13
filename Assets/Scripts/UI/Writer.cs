@@ -7,10 +7,19 @@ using UnityEngine.UI;
 public class Writer : MonoBehaviour
 {
     protected TextWriter processor;
+    
     protected Text textfield;
 
-    protected bool coroutineActive = false;
+    protected int nlines;
     protected int currentLine = 0;
+    
+    protected string[] lines;
+    
+    protected float waittime = 2;
+
+
+    protected bool coroutineActive = false;
+
 
     protected void prepForWriting()
     {
@@ -31,5 +40,15 @@ public class Writer : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         coroutineActive = false;
+    }
+    void Update()
+    {
+        if (!coroutineActive && currentLine < nlines)
+        {
+            processor.changeText(lines[currentLine]);
+            StartCoroutine(WriteLineAsChars(waittime, "text"));
+            currentLine++;
+            coroutineActive = true;
+        }
     }
 }
