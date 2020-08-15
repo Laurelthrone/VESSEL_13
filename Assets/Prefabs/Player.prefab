@@ -5141,7 +5141,7 @@ MonoBehaviour:
   faceRight: {fileID: 21300000, guid: e6578a7d392f4e34fbe8856d09b18cd2, type: 3}
   faceWin: {fileID: 21300000, guid: 36fad871b8d52aa428190ffd02908c75, type: 3}
   faceDead: {fileID: 21300000, guid: 9459572c5066ac442bd315afef5b88b1, type: 3}
-  facePound: {fileID: 21300000, guid: b135a2d4b0f16564190eb1e234b98f73, type: 3}
+  faceSlam: {fileID: 21300000, guid: b135a2d4b0f16564190eb1e234b98f73, type: 3}
   Ground:
     serializedVersion: 2
     m_Bits: 256
