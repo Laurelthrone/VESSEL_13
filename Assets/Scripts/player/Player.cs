@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public Light2D pointLight;
     public Scener scener;
     public Animator squash;
-    public Sprite faceLeft, faceRight, faceWin, faceDead, facePound;
+    public Sprite faceLeft, faceRight, faceWin, faceDead, faceSlam;
 
     SpriteRenderer playerSR, playerFace;
 
@@ -56,18 +56,18 @@ public class Player : MonoBehaviour
     Animator spriteAnimator, chromaticAberration;
     Dictionary<string, Color> playerColors = new Dictionary<string, Color>();
 
-    Color Pound, Normal, Dead;
+    Color Slam, Normal, Dead;
 
     const int playerLayer = 10, alwaysIgnoreLayer = 9, deathwallLayer = 14;
 
     // Start is called before the first frame update
     void Start()    
     {
-        ColorUtility.TryParseHtmlString("#CF616D", out Pound);
+        ColorUtility.TryParseHtmlString("#CF616D", out Slam);
         ColorUtility.TryParseHtmlString("#FFCEF8", out Normal);
         ColorUtility.TryParseHtmlString("#87639A", out Dead);
 
-        playerColors.Add("pound", Pound);
+        playerColors.Add("slam", Slam);
         playerColors.Add("airborne", Normal);
         playerColors.Add("victory", Normal);
         playerColors.Add("grounded", Normal);
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 
         if (isDead()) return;
 
-        if (playerState == "pound")
+        if (playerState == "slam")
         {
             trail.enabled = false;
             if (canWallbounce) wallbounce();
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
         else
         {
             trail.enabled = true;
-            if ((squash.GetCurrentAnimatorStateInfo(0)).IsName("Player_Pound")) squash.SetTrigger("Reset");
+            if ((squash.GetCurrentAnimatorStateInfo(0)).IsName("Player_slam")) squash.SetTrigger("Reset");
         }
 
         isGrounded();
@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
         if (player.velocity.x > speedLimit) player.velocity = new Vector2(speedLimit, player.velocity.y);
         if (player.velocity.x < -speedLimit) player.velocity = new Vector2(-speedLimit, player.velocity.y);
 
-        if (playerState != "pound")
+        if (playerState != "slam")
         {
             spriteAnimator.SetFloat("Speed", player.velocity.x / 3);
         }
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
                 playerState = "airborne";
                 doSquash = true;
             }
-            else if (playerState == "pound" && player.velocity.y > 0) land();
+            else if (playerState == "slam" && player.velocity.y > 0) land();
         }
         return;
     }
@@ -191,14 +191,14 @@ public class Player : MonoBehaviour
     private void doParticles()
     {
         //Particle scripts
-        if (playerState == "pound") DJumpParticleScript.burstParticle(.7f, .5f, .5f, 6);
+        if (playerState == "slam") DJumpParticleScript.burstParticle(.7f, .5f, .5f, 6);
         else if (!doubleJump || grounded) DJumpParticleScript.hideParticle();
         else DJumpParticleScript.showParticle();
     }
 
     private void jump(ref float ymov, float jumpheight)
     {
-        if (playerState != "pound")
+        if (playerState != "slam")
         {
             squash.SetTrigger("Stretch");
             doSquash = true;
@@ -214,17 +214,12 @@ public class Player : MonoBehaviour
 
     private void abilities(ref float ymov)
     {
-        //holy shit please go back and establish some kind of consistency between "slam," "pound," and "drop" now that the move is officially called a slam
-        if (playerState != "pound" && !grounded && Input.GetButtonDown("Slam"))
+        if (playerState != "slam" && !grounded && Input.GetButtonDown("Slam"))
         {
             //Check if slam is available
             if (slamTime <= Time.time)
             {
-                squash.SetTrigger("Pound");
-                Sounder.PlaySound("drop");
-                thisCamera.SendMessage("slamShake");
-                player.velocity = new Vector2(player.velocity.x, -30);
-                playerState = "pound";
+                slam();
                 return;
             }
             else
@@ -250,9 +245,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    void slam()
+    {
+        squash.SetTrigger("slam");
+        Sounder.PlaySound("drop");
+        player.velocity = new Vector2(player.velocity.x, -30);
+        playerState = "slam";
+    }
+
     private void land()
     {
-        if (playerState == "pound") thisCamera.SendMessage("land");
+        if (playerState == "slam") thisCamera.SendMessage("land");
         playerState = "grounded";
         if (doSquash) squash.SetTrigger("Squash");
         doubleJump = true;
@@ -263,7 +266,7 @@ public class Player : MonoBehaviour
     {
         playerSR.color = playerColors[playerState];
         if (playerState == "dead") playerFace.sprite = faceDead;
-        else if (playerState == "pound") playerFace.sprite = facePound;
+        else if (playerState == "slam") playerFace.sprite = faceSlam;
         else if (player.velocity.x < 0) playerFace.sprite = faceLeft;
         else playerFace.sprite = faceRight;
     }
@@ -373,14 +376,11 @@ public class Player : MonoBehaviour
         }
     }
     
-    //Adds slight delay to pound immediately after a jump to fix slowfall glitch
+    //Adds slight delay to slam immediately after a jump to fix slowfall glitch
     IEnumerator bufferSlam()
     {
         yield return new WaitForSeconds(slamCooldown);
-        squash.SetTrigger("Pound");
-        Sounder.PlaySound("drop");
-        player.velocity = new Vector2(player.velocity.x, -30);
-        playerState = "pound";
+        slam();
     }
 
     //Bounce off side of crates
