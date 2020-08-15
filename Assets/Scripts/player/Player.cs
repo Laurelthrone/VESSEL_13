@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     float ymov;
     float crateMargin;
     float storeXvel;
+    float gamespeed;
     
     
     private Vector2 targetPos;
@@ -63,6 +64,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
+        gamespeed = Time.timeScale;
+        Time.timeScale = 0;
         playerState = "grounded";
         ColorUtility.TryParseHtmlString("#CF616D", out Slam);
         ColorUtility.TryParseHtmlString("#FFCEF8", out Normal);
@@ -96,6 +99,7 @@ public class Player : MonoBehaviour
         chromaticAberration = FindObjectOfType<Volume>().GetComponent<Animator>();
         chromaticAberration.SetFloat("Speed", -1f);
         initialized = true;
+        Time.timeScale = gamespeed;
     }
 
     // Update is called once per frame
