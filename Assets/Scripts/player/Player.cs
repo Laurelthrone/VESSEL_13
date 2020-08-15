@@ -67,6 +67,8 @@ public class Player : MonoBehaviour
         gamespeed = Time.timeScale;
         Time.timeScale = 0;
         playerState = "grounded";
+        player = GetComponent<Rigidbody2D>();
+        player.bodyType = RigidbodyType2D.Static;
         ColorUtility.TryParseHtmlString("#CF616D", out Slam);
         ColorUtility.TryParseHtmlString("#FFCEF8", out Normal);
         ColorUtility.TryParseHtmlString("#87639A", out Dead);
@@ -81,26 +83,19 @@ public class Player : MonoBehaviour
         Physics2D.IgnoreLayerCollision(alwaysIgnoreLayer, playerLayer);
         Physics2D.IgnoreLayerCollision(deathwallLayer, playerLayer, true);
 
-        //Initialize components separately to reduce lag on first frame due to slow operations
-        StartCoroutine(InitComponents());
-    }
-
-    IEnumerator InitComponents()
-    {
-        yield return new WaitForEndOfFrame();
-        player = GetComponent<Rigidbody2D>();
+        
         player.gravityScale = gravity;
         capsule = GetComponent<CapsuleCollider2D>();
-        yield return new WaitForEndOfFrame();
         playerSR = playerSprite.GetComponent<SpriteRenderer>();
         playerFace = face.GetComponent<SpriteRenderer>();
         spriteAnimator = playerSprite.GetComponent<Animator>();
-        yield return new WaitForEndOfFrame();
         chromaticAberration = FindObjectOfType<Volume>().GetComponent<Animator>();
         chromaticAberration.SetFloat("Speed", -1f);
         initialized = true;
         Time.timeScale = gamespeed;
+        player.bodyType = RigidbodyType2D.Dynamic;
     }
+
 
     // Update is called once per frame
     void Update()
