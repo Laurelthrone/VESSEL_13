@@ -6,6 +6,7 @@ public class Globals : MonoBehaviour
 {
 
     public static bool shakeEnabled = true;
+    public static bool postProcessing = true;
     public static string currentScene = "1";
 
     // Start is called before the first frame update
