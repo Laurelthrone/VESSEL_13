@@ -398,7 +398,7 @@ public class Player : MonoBehaviour
 
     private void wallbounce()
     {
-        if (storeXvel < 10 && storeXvel > -10) return;
+        if (Math.Abs(storeXvel) < 5) return;
         thisCamera.SendMessage("land");
         player.velocity = new Vector2(storeXvel * 1.5f, 30);
         playerState = "airborne";
