@@ -41,6 +41,7 @@ public class Writer : MonoBehaviour
         }
         coroutineActive = false;
     }
+
     void Update()
     {
         if (!coroutineActive && currentLine < nlines)

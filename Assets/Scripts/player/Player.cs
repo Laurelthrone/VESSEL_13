@@ -247,7 +247,7 @@ public class Player : MonoBehaviour
 
     void slam()
     {
-        squash.SetTrigger("slam");
+        squash.SetTrigger("Slam");
         Sounder.PlaySound("drop");
         player.velocity = new Vector2(player.velocity.x, -30);
         playerState = "slam";
