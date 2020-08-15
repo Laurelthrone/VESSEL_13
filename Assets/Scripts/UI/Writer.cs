@@ -19,13 +19,15 @@ public class Writer : MonoBehaviour
         processor = new TextWriter("");
     }
 
-    protected IEnumerator WriteLineAsChars(float waittime)
+    protected IEnumerator WriteLineAsChars(float waittime, string textsound)
     {
         yield return new WaitForSeconds(waittime);
         textfield.text = "";
         for (int i = 0; i < processor.getLength(); i++)
         {
-            textfield.text += processor.returnText();
+            char write = processor.returnText();
+            textfield.text += write;
+            if (write != ' ') Sounder.PlaySound(textsound);
             yield return new WaitForSeconds(.1f);
         }
         coroutineActive = false;

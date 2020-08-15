@@ -27,7 +27,7 @@ public class FireballCutsceneWriter : Writer
         if (!coroutineActive && currentLine < nlines)
         {
             processor.changeText(lines[currentLine]);
-            StartCoroutine(WriteLineAsChars(waittime));
+            StartCoroutine(WriteLineAsChars(waittime,"text"));
             currentLine++;
             coroutineActive = true;
         }
