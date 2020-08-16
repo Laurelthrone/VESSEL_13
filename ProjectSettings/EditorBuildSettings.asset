@@ -140,4 +140,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/41.unity
     guid: 88193fce6be61f34185ff7d75b71c80e
+  - enabled: 1
+    path: Assets/Scenes/levelselect_crystal.unity
+    guid: 5756534946c5c0c41bb6535e221f20bb
+  - enabled: 1
+    path: Assets/Scenes/levelselect_lab.unity
+    guid: 1d3cbe84b9cc0114e8e9153931f97bc4
   m_configObjects: {}
