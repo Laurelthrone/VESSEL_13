@@ -16,8 +16,15 @@ public class TitleButton : MonoBehaviour
         
     void ReturnToTitle()
     {
+        string[] nopause = new string[3];
+        nopause[0] = "titlescreen";
+        nopause[1] = "levelselect_crystal";
+        nopause[2] = "levelselect_lab";
         scener.GoToScene("titlescreen");
-
-        if (Scener.currentScene != "settings") PauseMenu.unpause();
+        foreach (string x in nopause)
+        {
+            if (Scener.currentScene.Contains(x)) return;
+        }   
+        PauseMenu.unpause();
     }
 }

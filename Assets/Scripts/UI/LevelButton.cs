@@ -17,7 +17,7 @@ public class LevelButton : MonoBehaviour
         text.text = num.ToString();
         if (Globals.unlocked < num)
         {
-            text.color = new Color(.3f, .3f, .3f);
+            text.color = new Color(.7f, .3f, .7f);
         }
     }
 

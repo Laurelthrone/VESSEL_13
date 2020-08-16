@@ -16,6 +16,6 @@ public class StartButton : MonoBehaviour
         
     void StartGame()
     {
-        scener.GoToScene(Globals.currentScene);
+        scener.GoToScene("levelselect_crystal");
     }
 }
