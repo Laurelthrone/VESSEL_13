@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,11 +50,12 @@ public class OnscreenWriterBase : MonoBehaviour
 
     void Update()
     {
+        if (!runLoop) return;
         if (Player.playerState == "dead")
         {
             endDialog();
             return;
-        }
+        }   
 
         if (!coroutineActive)
         {
@@ -66,6 +68,7 @@ public class OnscreenWriterBase : MonoBehaviour
             {
                 textfield.text = "";
                 runLoop = false;
+                SendMessage("dialogTrigger", gameObject);
             }
         }
     }
