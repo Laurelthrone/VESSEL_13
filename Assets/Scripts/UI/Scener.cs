@@ -43,6 +43,7 @@ public class Scener : MonoBehaviour
 
         int sceneNum;
         sceneNum = int.Parse(currentScene) + 1;
+        if (sceneNum > Globals.unlocked) Globals.unlocked = sceneNum;
         StartCoroutine(LoadLevel(sceneNum.ToString()));
     }
 

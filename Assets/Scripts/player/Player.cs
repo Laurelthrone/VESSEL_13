@@ -113,11 +113,13 @@ public class Player : MonoBehaviour
 
         if (playerState == "slam")
         {
+            spriteAnimator.SetFloat("Speed", 6 * Math.Sign(player.velocity.x));
             trail.enabled = false;
             if (canWallbounce) wallbounce();
         }
         else
         {
+            spriteAnimator.SetFloat("Speed", player.velocity.x / 3);
             trail.enabled = true;
             if ((squash.GetCurrentAnimatorStateInfo(0)).IsName("Player_slam")) squash.SetTrigger("Reset");
         }
@@ -140,13 +142,6 @@ public class Player : MonoBehaviour
         //Cap velocity at speed limit
         if (player.velocity.x > speedLimit) player.velocity = new Vector2(speedLimit, player.velocity.y);
         if (player.velocity.x < -speedLimit) player.velocity = new Vector2(-speedLimit, player.velocity.y);
-
-        if (playerState != "slam")
-        {
-            spriteAnimator.SetFloat("Speed", player.velocity.x / 3);
-        }
-        else spriteAnimator.SetFloat("Speed", 6 * Math.Sign(player.velocity.x));
-       
     }
 
     private bool groundDetect(LayerMask mask, float margin)
