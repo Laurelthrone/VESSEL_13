@@ -304,8 +304,12 @@ public class Player : MonoBehaviour
 
     IEnumerator pullTo(Vector2 point)
     {
-        while(player.position != point)
+        while(true)
         {
+            float xvel = player.velocity.x;
+            float yvel = player.velocity.y;
+            xvel = 0;
+            yvel = 0;
             transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), point, 7 * Time.deltaTime);
             playerFace.sprite = faceWin;
             yield return new WaitForEndOfFrame();
