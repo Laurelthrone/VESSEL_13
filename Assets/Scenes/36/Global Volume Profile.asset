@@ -48,7 +48,7 @@ MonoBehaviour:
     min: 0
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0, b: 0.20513344, a: 1}
+    m_Value: {r: 0.62894964, g: 0, b: 0.754717, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
-    m_Value: 68
+    m_Value: -12
     min: -100
     max: 100
   tint:
