@@ -277,6 +277,13 @@ public class Player : MonoBehaviour
         if (playerState != "victory")   
             switch (trig.tag)
             {
+                case "Beast":
+                    if (playerState == "slam")
+                    {
+                        trig.SendMessage("Killed");
+                        break;
+                    }
+                    goto case "Hazard";
                 case "Hazard":
                     die();
                     break;

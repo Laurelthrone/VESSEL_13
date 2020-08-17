@@ -8,6 +8,10 @@ TagManager:
   - Revive
   - Victory
   - Wallbouncer
+  - Fragments
+  - Detector
+  - Ground
+  - Beast
   layers:
   - Default
   - TransparentFX

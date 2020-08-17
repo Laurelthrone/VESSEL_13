@@ -9,14 +9,16 @@ public class CameraScript : MonoBehaviour
 {
 
     Animator animator;
-    UniversalAdditionalCameraData thisCamera;
+    UniversalAdditionalCameraData UACD;
+    Camera thisCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        thisCamera = GetComponent<UniversalAdditionalCameraData>();
-        thisCamera.renderPostProcessing = Globals.postProcessing;
+        UACD = GetComponent<UniversalAdditionalCameraData>();
+        UACD.renderPostProcessing = Globals.postProcessing;
+        thisCamera = GetComponent<Camera>();
     }
 
     void deathShake()
