@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canWallbounce);
+        Debug.Log(Globals.shakeEnabled);
 
         if (!initialized || playerState == "victory") return;
 
@@ -243,6 +243,7 @@ public class Player : MonoBehaviour
     void slam()
     {
         squash.SetTrigger("Slam");
+        thisCamera.SendMessage("slamShake");
         Sounder.PlaySound("drop");
         player.velocity = new Vector2(player.velocity.x, -30);
         playerState = "slam";

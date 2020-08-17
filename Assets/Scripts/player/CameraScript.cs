@@ -21,16 +21,23 @@ public class CameraScript : MonoBehaviour
 
     void deathShake()
     {
+        Debug.Log("Received");
         if (Globals.shakeEnabled) animator.SetTrigger("Death");
     }
 
     void slamShake()
     {
-        if (Globals.shakeEnabled) animator.SetTrigger("Slam");
+        Debug.Log("Received");
+        if (Globals.shakeEnabled)
+        {
+            Debug.Log("Sent");
+            animator.SetTrigger("Slam");
+        }
     }
 
     void land()
     {
+        Debug.Log("Received");
         if (Globals.shakeEnabled) animator.SetTrigger("Land");
     }
 }
