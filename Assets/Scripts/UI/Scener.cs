@@ -62,6 +62,11 @@ public class Scener : MonoBehaviour
 
     IEnumerator LoadLevel(string sceneNum)
     {
+        Debug.Log("Writing to file...");
+        PlayerPrefs.SetInt("unlocked", Globals.unlocked);
+        PlayerPrefs.SetInt("postProcessing", Globals.postProcessing ? 1 : 0);
+        PlayerPrefs.SetInt("shakeEnabled", Globals.shakeEnabled ? 1 : 0);
+        PlayerPrefs.Save();
         transitionActive = true;
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1.5f);

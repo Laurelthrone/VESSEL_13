@@ -19,6 +19,7 @@ public class TogglePostProcessing : MonoBehaviour
     void toggleShake()
     {
         Globals.postProcessing = !Globals.postProcessing;
+        Debug.Log(Globals.postProcessing);
         updateText();
     }
 

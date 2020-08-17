@@ -19,6 +19,7 @@ public class ToggleScreenShake : MonoBehaviour
     void toggleShake()
     {
         Globals.shakeEnabled = !Globals.shakeEnabled;
+        Debug.Log(Globals.shakeEnabled);
         updateText();
     }
     
