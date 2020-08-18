@@ -92,8 +92,14 @@ public class Player : MonoBehaviour
         chromaticAberration = FindObjectOfType<Volume>().GetComponent<Animator>();
         chromaticAberration.SetFloat("Speed", -1f);
         initialized = true;
-        Time.timeScale = gamespeed;
+        StartCoroutine(LoadTime());
         player.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    IEnumerator LoadTime()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        Time.timeScale = gamespeed;
     }
 
 
