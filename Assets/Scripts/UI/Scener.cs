@@ -9,13 +9,20 @@ public class Scener : MonoBehaviour
 
     public static string currentScene;
     public Scene scene;
-    public Animator transition;
+    public static Animator transition;
     public static bool transitionActive;
 
     // Start is called before the first frame update
     void Start()
     {
+        transition = gameObject.transform.Find("Image").GetComponent<Animator>();
+        transition.SetFloat("Speed", 0);
         StartCoroutine(Init());
+    }
+
+    public static void ready()
+    {
+        transition.SetFloat("Speed", 1);
     }
         
     // Update is called once per frame

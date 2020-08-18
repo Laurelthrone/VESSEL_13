@@ -98,7 +98,8 @@ public class Player : MonoBehaviour
 
     IEnumerator LoadTime()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(.5f);
+        Scener.ready();
         Time.timeScale = gamespeed;
     }
 
