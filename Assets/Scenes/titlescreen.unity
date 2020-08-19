@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 21744253}
-  scener: {fileID: 6552976594946530491}
+  scener: {fileID: 8688977886387570997}
   target: settings
 --- !u!114 &21744253
 MonoBehaviour:
@@ -727,7 +727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1618044290}
-  scener: {fileID: 6552976594946530491}
+  scener: {fileID: 8688977886387570997}
 --- !u!1 &1770361436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,7 +1542,6 @@ GameObject:
   - component: {fileID: 6552976594946530469}
   - component: {fileID: 6552976594946530468}
   - component: {fileID: 6552976594946530471}
-  - component: {fileID: 6552976594946530491}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1590,21 +1589,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &6552976594946530491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552976594946530470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47414bdb03552fd43b16f28f2d2c22c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene:
-    m_Handle: 0
-  transition: {fileID: 2586517930003357253}
 --- !u!1 &8688977886387570996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1602,7 @@ GameObject:
   - component: {fileID: 5780163508327163837}
   - component: {fileID: 5378451181784935513}
   - component: {fileID: 2586517930003357253}
+  - component: {fileID: 8688977886387570997}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1625,3 +1610,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8688977886387570997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688977886387570996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47414bdb03552fd43b16f28f2d2c22c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene:
+    m_Handle: 0

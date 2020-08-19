@@ -147,9 +147,18 @@ EditorBuildSettings:
     path: Assets/Scenes/levelselect_lab.unity
     guid: 1d3cbe84b9cc0114e8e9153931f97bc4
   - enabled: 1
-    path: Assets/Scenes/42.unity
+    path: Assets/Scenes/43.unity
     guid: 01b833dcb1bae4248918d10602869ccf
   - enabled: 1
     path: Assets/Scenes/levelselect_hell.unity
     guid: 5536d10f6d3f29d40b4beb1b47a4a2ef
+  - enabled: 1
+    path: Assets/Scenes/42.unity
+    guid: 67d019d05a58e51438aeea3125dc7f91
+  - enabled: 1
+    path: Assets/Scenes/44.unity
+    guid: ba952aae07856204396381077e035dc1
+  - enabled: 1
+    path: Assets/Scenes/45.unity
+    guid: a188dc0b7a8326d4797bda945d626a59
   m_configObjects: {}

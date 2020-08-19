@@ -11,6 +11,7 @@ public class PreviousButton : MonoBehaviour
 
     void Start()
     {
+        scener = Globals.scener;
         button.onClick.AddListener(previous);
     }
 

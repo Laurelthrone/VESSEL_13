@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
+        scener = Globals.scener;
         gamespeed = Time.timeScale;
         Time.timeScale = 0;
         playerState = "grounded";
@@ -183,8 +184,8 @@ public class Player : MonoBehaviour
         if (Input.GetAxis("Horizontal") < .5 && Input.GetAxis("Horizontal") > -.5 && grounded)
         {
             movement = new Vector2(-player.velocity.x * 2, ymov);
-        }
-        else movement = new Vector2(xmov, ymov);
+        } movement = new Vector2(xmov, ymov);
+    
 
         //Apply movement
         player.AddForce(movement);
@@ -397,6 +398,12 @@ public class Player : MonoBehaviour
         storeXvel = player.velocity.x;
         if (Scener.transitionActive == false) Sounder.PlaySound("land");
         if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
+        else if (collision.collider.tag == "Floorbouncer" && playerState == "slam") floorbounce();
+    }
+
+    private void floorbounce()
+    {
+        player.velocity = new Vector2(player.velocity.x, 40);
     }
 
     IEnumerator allowWallbounce()

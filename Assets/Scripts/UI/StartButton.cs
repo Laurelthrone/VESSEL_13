@@ -11,6 +11,7 @@ public class StartButton : MonoBehaviour
 
     void Start()
     {
+        scener = Globals.scener;
         button.onClick.AddListener(StartGame);
     }
         

@@ -11,6 +11,7 @@ public class TitleButton : MonoBehaviour
 
     void Start()
     {
+        scener = Globals.scener;
         button.onClick.AddListener(ReturnToTitle);
     }
         

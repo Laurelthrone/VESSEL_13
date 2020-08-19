@@ -8,7 +8,7 @@ public class WalkerBeast : MonoBehaviour
     //False - left
     //True - right
     bool direction = false, flipEnabled = true;
-    float flipCooldown = .5f;
+    float flipCooldown = .01f;
     public float speed = .75f;
 
     void Update()
@@ -22,7 +22,7 @@ public class WalkerBeast : MonoBehaviour
         {
             flipEnabled = false;
             direction = !direction;
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, 4);
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
             StartCoroutine(Cooldown()); 
         }
     }

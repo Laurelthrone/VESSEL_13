@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class LevelButton : MonoBehaviour
 {
     public Button button;
-    public Scener scener;
+    private Scener scener;
     public int num;
     private Text text;
 
     void Start()
     {
+        scener = Globals.scener;
         text = gameObject.GetComponentInChildren<Text>();
         button.onClick.AddListener(startLevel);
         text.text = num.ToString();

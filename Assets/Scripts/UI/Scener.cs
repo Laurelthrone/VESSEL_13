@@ -15,9 +15,14 @@ public class Scener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transition = gameObject.transform.Find("Image").GetComponent<Animator>();
+        Globals.scener = this;
+        if ((transition = GetComponent<Animator>()) == null)
+        {
+            transition = gameObject.transform.Find("Image").GetComponent<Animator>();
+        }
         transition.SetFloat("Speed", 0);
         StartCoroutine(Init());
+        if (GameObject.Find("Player") == null) ready();
     }
 
     public static void ready()

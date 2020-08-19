@@ -9,6 +9,7 @@ public class Globals : MonoBehaviour
     public static bool postProcessing = true;
     public static string currentScene = "1";
     public static int unlocked = 1;
+    public static Scener scener;
     // Start is called before the first frame update
     void Start()
     {

@@ -12,6 +12,7 @@ TagManager:
   - Detector
   - Ground
   - Beast
+  - Floorbouncer
   layers:
   - Default
   - TransparentFX

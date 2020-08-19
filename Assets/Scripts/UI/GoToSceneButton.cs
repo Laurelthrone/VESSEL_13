@@ -12,6 +12,7 @@ public class GoToSceneButton : MonoBehaviour
 
     void Start()
     {
+        scener = Globals.scener;
         button.onClick.AddListener(GoTo);
     }
 
