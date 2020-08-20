@@ -50720,5 +50720,25 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4207511363699816110, guid: 352469d22eae06f4098a867aaacd007e,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207511363699816110, guid: 352469d22eae06f4098a867aaacd007e,
+        type: 3}
+      propertyPath: far clip plane
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207511363699816110, guid: 352469d22eae06f4098a867aaacd007e,
+        type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565067823921126354, guid: 352469d22eae06f4098a867aaacd007e,
+        type: 3}
+      propertyPath: m_RendererIndex
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 352469d22eae06f4098a867aaacd007e, type: 3}

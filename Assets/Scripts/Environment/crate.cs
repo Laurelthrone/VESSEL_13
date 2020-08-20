@@ -22,7 +22,6 @@ public class Crate : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D target)
     {
-        Debug.Log(target.gameObject.tag);
         if (target.gameObject.tag.Equals("Player") && playerScript.getState() == "slam")
         {
             Sounder.PlaySound("box");

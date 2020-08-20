@@ -41,8 +41,6 @@ public class OnscreenWriterBase : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         currentLine++;
-        UnityEngine.Debug.Log(currentLine);
-        UnityEngine.Debug.Log(nlines);
         if (currentLine >= nlines) yield return new WaitForSeconds(waittime);
         coroutineActive = false;
     }

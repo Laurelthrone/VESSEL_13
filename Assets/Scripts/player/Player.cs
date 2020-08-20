@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     void Start()    
     {
         scener = Globals.scener;
-        gamespeed = Globals.timeScale;
+        Globals.timeScale += Globals.timeScale == 0 ? 1 : 0;
         Time.timeScale = 0;
         playerState = "grounded";
         player = GetComponent<Rigidbody2D>();
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(.5f);
         Scener.ready();
-        Time.timeScale = gamespeed;
+        Time.timeScale = Globals.timeScale;
     }
 
 

@@ -26,7 +26,7 @@ public class Globals : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        if (!PlayerPrefs.HasKey("shakeEnabled")) return;
+        if (!PlayerPrefs.HasKey("timeScale")) return;
         shakeEnabled = PlayerPrefs.GetInt("shakeEnabled") == 1;
         postProcessing = PlayerPrefs.GetInt("postProcessing") == 1;
         unlocked = PlayerPrefs.GetInt("unlocked");
