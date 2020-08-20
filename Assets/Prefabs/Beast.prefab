@@ -252,7 +252,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: f7e8ca5cc40539647b9adca5679a88c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4515dcd6e2317db45a89d7f870cf5028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.75
 --- !u!1 &3459454062423032146
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +411,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0, b: 0.20168066, a: 1}
-  m_Intensity: 1.48
+  m_Intensity: 0.79
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 21300000, guid: c04142ab1cea0b84782098562aa69327,
@@ -418,7 +419,7 @@ MonoBehaviour:
   m_UseNormalMap: 0
   m_LightOrder: 8
   m_AlphaBlendOnOverlap: 1
-  m_ShadowIntensity: 0
+  m_ShadowIntensity: 1
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
@@ -427,9 +428,9 @@ MonoBehaviour:
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 48
-  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricAngleOffset: 170
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 19.32
+  m_ShapeLightFalloffSize: 2.1
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: 0.01689148, y: 0.6510844, z: 0}
