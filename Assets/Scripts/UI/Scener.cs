@@ -49,11 +49,11 @@ public class Scener : MonoBehaviour
 
     public void nextScene()
     {
-        /* if (currentScene == "35")
+        if (currentScene == "49")
         {
             GoToScene("endscreen");
             return;
-        } */
+        }
 
         int sceneNum;
         sceneNum = int.Parse(currentScene) + 1;
@@ -76,10 +76,10 @@ public class Scener : MonoBehaviour
 
     IEnumerator LoadLevel(string sceneNum)
     {
-        Debug.Log("Writing to file...");
         PlayerPrefs.SetInt("unlocked", Globals.unlocked);
         PlayerPrefs.SetInt("postProcessing", Globals.postProcessing ? 1 : 0);
         PlayerPrefs.SetInt("shakeEnabled", Globals.shakeEnabled ? 1 : 0);
+        PlayerPrefs.SetFloat("timeScale", Globals.timeScale);
         PlayerPrefs.Save();
         transitionActive = true;
         transition.SetTrigger("Start");

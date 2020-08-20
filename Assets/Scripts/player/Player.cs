@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     void Start()    
     {
         scener = Globals.scener;
-        gamespeed = Time.timeScale;
+        gamespeed = Globals.timeScale;
         Time.timeScale = 0;
         playerState = "grounded";
         player = GetComponent<Rigidbody2D>();

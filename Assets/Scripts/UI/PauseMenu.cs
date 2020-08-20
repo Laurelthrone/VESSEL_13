@@ -32,7 +32,7 @@ public class PauseMenu : MonoBehaviour
     public static void unpause()
     {
         if(pauseanim != null) pauseanim.SetTrigger("Unpause");
-        Time.timeScale = 1;
+        Time.timeScale = Globals.timeScale;
         Time.fixedDeltaTime = deltatime;
         isPaused = false;
         return;
