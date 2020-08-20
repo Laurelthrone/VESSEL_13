@@ -22,15 +22,9 @@ public class StringToCharStream
         step = 0;
     }
 
-    public int getLength()
-    {
-        return length;
-    }
+    public int getLength() => length;
 
-    public int getStep()
-    {
-        return step;
-    }
+    public int Step => step;
 
     public char returnText()
     {

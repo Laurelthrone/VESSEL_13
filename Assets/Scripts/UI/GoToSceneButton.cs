@@ -16,8 +16,5 @@ public class GoToSceneButton : MonoBehaviour
         button.onClick.AddListener(GoTo);
     }
 
-    void GoTo()
-    {
-        scener.GoToScene(target);
-    }
+    void GoTo() => scener.GoToScene(target);
 }

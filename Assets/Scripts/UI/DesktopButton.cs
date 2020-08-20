@@ -8,13 +8,7 @@ public class DesktopButton : MonoBehaviour
 
     public Button button;
 
-    void Start()
-    {
-        button.onClick.AddListener(Desktop);
-    }
-        
-    void Desktop()
-    {
-       Application.Quit();
-    }
+    void Start() => button.onClick.AddListener(Desktop);
+
+    void Desktop() => Application.Quit();
 }

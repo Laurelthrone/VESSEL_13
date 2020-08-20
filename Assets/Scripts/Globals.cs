@@ -10,6 +10,8 @@ public class Globals : MonoBehaviour
     public static string currentScene = "1";
     public static int unlocked = 1;
     public static Scener scener;
+    public static int shardCounter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +21,4 @@ public class Globals : MonoBehaviour
         postProcessing = PlayerPrefs.GetInt("postProcessing") == 1;
         unlocked = PlayerPrefs.GetInt("unlocked");
     }
-
 }

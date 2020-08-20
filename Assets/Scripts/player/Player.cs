@@ -108,7 +108,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Globals.shakeEnabled);
 
         if (!initialized || playerState == "victory") return;
 
@@ -345,11 +344,7 @@ public class Player : MonoBehaviour
     }
 
     //If the light radius isn't the target radius, shift the radius in the right direction
-    private void shiftLight()
-    {
-        if (pointLight.pointLightOuterRadius < targetRadius) pointLight.pointLightOuterRadius += 1f;
-        else pointLight.pointLightOuterRadius -= 1;
-    }
+    private void shiftLight() => pointLight.pointLightOuterRadius += (pointLight.pointLightOuterRadius < targetRadius) ? 1f : -1f;
 
     //Performs death actions and returns whether the player is dead
     private bool isDead()
@@ -383,11 +378,8 @@ public class Player : MonoBehaviour
     private void crateBroken()
     {
         thisCamera.SendMessage("land");
-        if (groundDetect(Crates,crateMargin))
-        {
-            player.velocity = new Vector2(player.velocity.x, 30);
-        }
-        else player.velocity = new Vector2(player.velocity.x, 20);
+        player.velocity = groundDetect(Crates, crateMargin) ? new Vector2(player.velocity.x, 30) : new Vector2(player.velocity.x, 20);
+        squash.SetTrigger("Squash");
         playerState = "airborne";
         doubleJump = true;
     }
@@ -401,10 +393,7 @@ public class Player : MonoBehaviour
         else if (collision.collider.tag == "Floorbouncer" && playerState == "slam") floorbounce();
     }
 
-    private void floorbounce()
-    {
-        player.velocity = new Vector2(player.velocity.x, 40);
-    }
+    private void floorbounce() => player.velocity = new Vector2(player.velocity.x, 40);
 
     IEnumerator allowWallbounce()
     {
@@ -422,9 +411,10 @@ public class Player : MonoBehaviour
         //Don't wallbounce if player didn't have enough velocity
         if (Math.Abs(storeXvel) < 5) return;
         
-        //Disable the slam zoom
+        //Disable the slam zoom and trigger squash
         thisCamera.SendMessage("land");
-        
+        squash.SetTrigger("Squash");
+
         //Apply the bounce velocity
         player.velocity = new Vector2(storeXvel * 1.5f, 30);
 

@@ -15,6 +15,7 @@ public class Scener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Globals.shardCounter = 0;
         Globals.scener = this;
         if ((transition = GetComponent<Animator>()) == null)
         {
@@ -33,6 +34,7 @@ public class Scener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Globals.shardCounter);
         if (Input.anyKeyDown && SceneManager.GetActiveScene().name != "titlescreen")
         {
             if (Input.GetKeyDown("r")) reloadScene();

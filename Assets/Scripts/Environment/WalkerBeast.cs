@@ -10,10 +10,7 @@ public class WalkerBeast : MonoBehaviour
     float flipCooldown = .01f;
     public float speed = .75f;
 
-    void Update()
-    {
-        gameObject.transform.position = new Vector2(gameObject.transform.position.x + speed * (direction ? 1 : -1) * Time.deltaTime * 10, gameObject.transform.position.y);
-    }
+    void Update() => gameObject.transform.position = new Vector2(gameObject.transform.position.x + speed * (direction ? 1 : -1) * Time.deltaTime * 10, gameObject.transform.position.y);
 
     void Flip()
     {
@@ -26,10 +23,7 @@ public class WalkerBeast : MonoBehaviour
         }
     }
 
-    void Killed()
-    {
-        Destroy(gameObject);
-    }
+    void Killed() => Destroy(gameObject);
 
     IEnumerator Cooldown()
     {

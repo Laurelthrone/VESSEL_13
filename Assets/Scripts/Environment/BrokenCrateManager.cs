@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrokenCrateShard : MonoBehaviour
+public class BrokenCrateManager : MonoBehaviour
 {
     public GameObject holder;
 
@@ -12,7 +12,15 @@ public class BrokenCrateShard : MonoBehaviour
         foreach (Transform child in holder.transform)
         {
             if (child.name != "Collider")
+            {
+                Globals.shardCounter++;
+                if (Globals.shardCounter > 300)
+                {
+                    GameObject.Destroy(child.gameObject);
+                    return;
+                }
                 GameObject.Destroy(child.gameObject, Random.Range(0f, 2.0f));
+            }
         }
         GameObject.Destroy(holder, 3f);
     }

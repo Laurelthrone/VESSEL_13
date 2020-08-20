@@ -76,12 +76,6 @@ public class StationaryFireballSpawner : MonoBehaviour
         }
     }
 
-    void toRed()
-    {
-        glow.color = FBSred;
-    }
-    void toBlue()
-    {
-        glow.color = FBSblue;
-    }
+    void toRed() => glow.color = FBSred;
+    void toBlue() => glow.color = FBSblue;
 }
