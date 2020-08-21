@@ -48,11 +48,11 @@ public class Scener : MonoBehaviour
 
     public void nextScene()
     {
-        if (currentScene == "49")
+        /* if (currentScene == "49")
         {
             GoToScene("endscreen");
             return;
-        }
+        } */
 
         int sceneNum;
         sceneNum = int.Parse(currentScene) + 1;
