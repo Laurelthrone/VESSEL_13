@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1699,7 +1699,7 @@ PrefabInstance:
     - target: {fileID: 6062172412408657814, guid: 3332e38f72fe8244a9579a1ce9ec2970,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6062172412408657814, guid: 3332e38f72fe8244a9579a1ce9ec2970,
         type: 3}
@@ -1841,7 +1841,7 @@ PrefabInstance:
     - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2674746151948457512, guid: 738522e0526d1d748bfee71fa5e9a2bf,
         type: 3}
@@ -19143,7 +19143,7 @@ PrefabInstance:
     - target: {fileID: 3323015691548423427, guid: 1d795fa1f78bb634fb30210e1e73f1c4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3323015691548423427, guid: 1d795fa1f78bb634fb30210e1e73f1c4,
         type: 3}
@@ -19373,7 +19373,7 @@ PrefabInstance:
     - target: {fileID: 6062172412408657814, guid: 3332e38f72fe8244a9579a1ce9ec2970,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6062172412408657814, guid: 3332e38f72fe8244a9579a1ce9ec2970,
         type: 3}
@@ -20597,7 +20597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1941509740}
-  num: 31
+  num: 50
 --- !u!114 &1941509740
 MonoBehaviour:
   m_ObjectHideFlags: 0
