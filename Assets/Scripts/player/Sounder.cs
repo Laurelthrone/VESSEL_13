@@ -44,11 +44,12 @@ public class Sounder : MonoBehaviour
 
     public static void PlaySound (string clip)
     {
-        if (!audioSrc.isPlaying)
+        if (clip != "orb")
         {
-            if (clip != "orb") audioSrc.pitch = (Random.Range(.9f, 1.1f));
-            else audioSrc.pitch = 1;
+            if (!audioSrc.isPlaying) audioSrc.pitch = (Random.Range(.97f, 1.03f));
         }
+        else audioSrc.pitch = 1;
+
         audioSrc.PlayOneShot(clipNames[clip]);
     }
 
