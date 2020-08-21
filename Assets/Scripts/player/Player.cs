@@ -388,7 +388,14 @@ public class Player : MonoBehaviour
     {
         //Store velocity on contact with wall to apply when wallbounce occurs
         storeXvel = player.velocity.x;
+        if (collision.collider.tag == "Hazard")
+        {
+            die();
+            return;
+        }
+
         if (Scener.transitionActive == false) Sounder.PlaySound("land");
+
         if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
         else if (collision.collider.tag == "Floorbouncer" && playerState == "slam") floorbounce();
     }
