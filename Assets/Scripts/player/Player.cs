@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
         Vector2 movement;
 
         //If grounded with no input, stop in place. In air, keep moving.
-        if (Scener.currentScene == "60") xmov = -1 * (ymov -= 10);
+        if (Scener.currentScene == "60") xmov = -1 * (ymov -= 10) * Time.deltaTime * 100;
         movement = (Input.GetAxis("Horizontal") < .5 && Input.GetAxis("Horizontal") > -.5 && grounded) ? new Vector2(-player.velocity.x * 2, ymov) : new Vector2(xmov, ymov);
     
 
