@@ -84,7 +84,7 @@ public class Scener : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1.5f);
         GameObject player;
-        if ((player = GameObject.Find("Player")) == null) Destroy(player);
+        if((player = GameObject.Find("Player")) == null) Destroy(player);
         SceneManager.LoadScene(sceneNum);
     }
 

@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
         Vector2 movement;
 
         //Glitch level movement effect
-        if (Scener.currentScene == "63") xmov = -1 * (ymov -= 10) * Time.deltaTime * 100;
+        if (Scener.currentScene == "60") xmov = -1 * (ymov -= 10) * Time.deltaTime * 100;
 
         //If grounded with no input, stop in place. In air, keep moving.
         movement = (Input.GetAxis("Horizontal") < .5 && Input.GetAxis("Horizontal") > -.5 && grounded) ? new Vector2(-player.velocity.x * 2, ymov) : new Vector2(xmov, ymov);
@@ -304,6 +304,9 @@ public class Player : MonoBehaviour
                 case "Revive":
                     revive();
                     break;
+                case "Deathplane":
+                    scener.reloadScene();
+                    break;
             }
     }
 
@@ -354,6 +357,7 @@ public class Player : MonoBehaviour
             chromaticAberration.SetFloat("Speed", -1f);
             Sounder.PlaySound("revive");
             playerState = "grounded";
+            doubleJump = true;
             thisCamera.SendMessage("deathShake");
         }
     }
