@@ -91,6 +91,8 @@ public class Scener : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         scene = SceneManager.GetActiveScene();
+        Physics.gravity = scene.name == "56" ? new Vector3(-3, -15) : new Vector3(0, -9.81f) + Vector3.left;
+        Debug.Log(Physics.gravity);
         currentScene = scene.name;
         if (int.TryParse(currentScene, out int a)) Globals.currentScene = currentScene;
         transitionActive = false;
