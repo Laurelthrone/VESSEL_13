@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - Beast
   - Floorbouncer
+  - GlitchVictory
   layers:
   - Default
   - TransparentFX

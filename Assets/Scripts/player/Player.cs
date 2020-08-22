@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if (!initialized || playerState == "victory") return;
+        if (playerState == "victory" || playerState == "glitch" || !initialized) return;
 
         if (pointLight.pointLightOuterRadius != targetRadius)
         {
@@ -179,8 +179,10 @@ public class Player : MonoBehaviour
         //Prepare to check movement
         Vector2 movement;
 
+        //Glitch level movement effect
+        if (Scener.currentScene == "63") xmov = -1 * (ymov -= 10) * Time.deltaTime * 100;
+
         //If grounded with no input, stop in place. In air, keep moving.
-        if (Scener.currentScene == "60") xmov = -1 * (ymov -= 10) * Time.deltaTime * 100;
         movement = (Input.GetAxis("Horizontal") < .5 && Input.GetAxis("Horizontal") > -.5 && grounded) ? new Vector2(-player.velocity.x * 2, ymov) : new Vector2(xmov, ymov);
     
 
@@ -291,6 +293,10 @@ public class Player : MonoBehaviour
                     StartCoroutine(pullTo(trig.transform.position));
                     win();
                     break;
+                case "GlitchVictory":
+                    StartCoroutine(pullTo(trig.transform.position));
+                    glitch();
+                    break;
                 case "Revive":
                     revive();
                     break;
@@ -327,6 +333,13 @@ public class Player : MonoBehaviour
     {
         Sounder.PlaySound("orb");
         playerState = "victory";
+        scener.nextScene();
+    }
+
+    void glitch()
+    {
+        Sounder.PlaySound("glitch");
+        playerState = "glitch";
         scener.nextScene();
     }
 

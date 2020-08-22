@@ -8,25 +8,27 @@ using UnityEngine.Rendering.Universal;
 public class CameraScript : MonoBehaviour
 {
 
-    Animator animator;
-    UniversalAdditionalCameraData UACD;
-    Camera thisCamera;
+    protected Animator animator;
+    protected UniversalAdditionalCameraData UACD;
+    protected Camera thisCamera;
+    protected GameObject player;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         animator = GetComponent<Animator>();
         UACD = GetComponent<UniversalAdditionalCameraData>();
+        player = GameObject.Find("Player");
         UACD.renderPostProcessing = Globals.postProcessing;
         thisCamera = GetComponent<Camera>();
     }
 
-    void deathShake()
+    protected void deathShake()
     {
         if (Globals.shakeEnabled) animator.SetTrigger("Death");
     }
 
-    void slamShake()
+    protected void slamShake()
     {
         if (Globals.shakeEnabled)
         {

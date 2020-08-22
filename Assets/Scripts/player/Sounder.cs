@@ -5,26 +5,32 @@ using UnityEngine;
 public class Sounder : MonoBehaviour
 {
 
-    public static AudioClip jumpSound, dropSound, landSound, deathSound, orbSound, loadSound, boxSound, breakSound, restartSound, shootSound, reviveSound, textSound;
+    public static AudioClip jumpSound, dropSound, landSound, deathSound, orbSound, loadSound, boxSound, 
+                            breakSound, restartSound, shootSound, reviveSound, textSound, glitchSound;
+
     static AudioSource audioSrc;
     static IDictionary<string, AudioClip> clipNames = new Dictionary<string, AudioClip>();
 
     // Start is called before the first frame update
     void Start()
     {
-        shootSound = Resources.Load<AudioClip>("shoot");
-        jumpSound = Resources.Load<AudioClip>("jump");
-        dropSound = Resources.Load<AudioClip>("drop");
-        landSound = Resources.Load<AudioClip>("land");
-        deathSound = Resources.Load<AudioClip>("death");
-        orbSound = Resources.Load <AudioClip>("orb");
-        boxSound = Resources.Load<AudioClip>("box");
-        breakSound = Resources.Load<AudioClip>("break");
-        restartSound = Resources.Load<AudioClip>("restart");
-        reviveSound = Resources.Load<AudioClip>("revive");
-        textSound = Resources.Load<AudioClip>("text");
-        audioSrc = GetComponent<AudioSource>();
-        audioSrc.volume = .5f;
+        if (shootSound == null)
+        {
+            shootSound = Resources.Load<AudioClip>("shoot");
+            jumpSound = Resources.Load<AudioClip>("jump");
+            dropSound = Resources.Load<AudioClip>("drop");
+            landSound = Resources.Load<AudioClip>("land");
+            deathSound = Resources.Load<AudioClip>("death");
+            orbSound = Resources.Load<AudioClip>("orb");
+            boxSound = Resources.Load<AudioClip>("box");
+            breakSound = Resources.Load<AudioClip>("break");
+            restartSound = Resources.Load<AudioClip>("restart");
+            reviveSound = Resources.Load<AudioClip>("revive");
+            textSound = Resources.Load<AudioClip>("text");
+            glitchSound = Resources.Load<AudioClip>("glitch");
+            audioSrc = GetComponent<AudioSource>();
+            audioSrc.volume = .5f;
+        }
 
         if (!clipNames.ContainsKey(("jump")))
         {
@@ -39,6 +45,7 @@ public class Sounder : MonoBehaviour
             clipNames.Add("shoot", shootSound);
             clipNames.Add("revive", reviveSound);
             clipNames.Add("text", textSound);
+            clipNames.Add("glitch", glitchSound);
         }
     }
 
