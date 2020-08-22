@@ -14,23 +14,20 @@ public class Sounder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (shootSound == null)
-        {
-            shootSound = Resources.Load<AudioClip>("shoot");
-            jumpSound = Resources.Load<AudioClip>("jump");
-            dropSound = Resources.Load<AudioClip>("drop");
-            landSound = Resources.Load<AudioClip>("land");
-            deathSound = Resources.Load<AudioClip>("death");
-            orbSound = Resources.Load<AudioClip>("orb");
-            boxSound = Resources.Load<AudioClip>("box");
-            breakSound = Resources.Load<AudioClip>("break");
-            restartSound = Resources.Load<AudioClip>("restart");
-            reviveSound = Resources.Load<AudioClip>("revive");
-            textSound = Resources.Load<AudioClip>("text");
-            glitchSound = Resources.Load<AudioClip>("glitch");
-            audioSrc = GetComponent<AudioSource>();
-            audioSrc.volume = .5f;
-        }
+        shootSound = Resources.Load<AudioClip>("shoot");
+        jumpSound = Resources.Load<AudioClip>("jump");
+        dropSound = Resources.Load<AudioClip>("drop");
+        landSound = Resources.Load<AudioClip>("land");
+        deathSound = Resources.Load<AudioClip>("death");
+        orbSound = Resources.Load<AudioClip>("orb");
+        boxSound = Resources.Load<AudioClip>("box");
+        breakSound = Resources.Load<AudioClip>("break");
+        restartSound = Resources.Load<AudioClip>("restart");
+        reviveSound = Resources.Load<AudioClip>("revive");
+        textSound = Resources.Load<AudioClip>("text");
+        glitchSound = Resources.Load<AudioClip>("glitch");
+        audioSrc = GetComponent<AudioSource>();
+        audioSrc.volume = .5f;
 
         if (!clipNames.ContainsKey(("jump")))
         {

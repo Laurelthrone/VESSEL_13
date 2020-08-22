@@ -8,6 +8,10 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
+    ~Player()
+    {
+        Debug.Log("DESTROYED");
+    }
 
     //public
     public static string playerState = "grounded";
@@ -108,7 +112,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (playerState == "victory" || playerState == "glitch" || !initialized) return;
 
         if (pointLight.pointLightOuterRadius != targetRadius)
@@ -204,13 +207,14 @@ public class Player : MonoBehaviour
         {
             squash.SetTrigger("Stretch");
             doSquash = true;
+            Debug.Log(ymov);
             DJumpParticleScript.burstParticle(1, 1, 1, 8);
             player.constraints = RigidbodyConstraints2D.FreezeRotation;
-            Sounder.PlaySound("jump");
             ymov = (jumpheight * 100 + Mathf.Abs(player.velocity.y));
             player.velocity = new Vector2(player.velocity.x, 0);
             if (!grounded) doubleJump = false;
             slamTime = slamCooldown + Time.time;
+            Sounder.PlaySound("jump");
         }
     }
 
@@ -251,9 +255,9 @@ public class Player : MonoBehaviour
     {
         squash.SetTrigger("Slam");
         thisCamera.SendMessage("slamShake");
-        Sounder.PlaySound("drop");
         player.velocity = new Vector2(player.velocity.x, -30);
         playerState = "slam";
+        Sounder.PlaySound("drop");
     }
 
     private void land()
