@@ -204,6 +204,15 @@ EditorBuildSettings:
     path: Assets/Scenes/51.unity
     guid: 3d7626153212ff34d976486902c9be10
   - enabled: 1
+    path: Assets/Scenes/59.unity
+    guid: 6e93a006f0cfc954790d4649ffe88478
+  - enabled: 1
     path: Assets/Scenes/61.unity
     guid: 58af34edc457d83429b29c59f4eb7e75
+  - enabled: 1
+    path: Assets/Scenes/62.unity
+    guid: bf72ff1c95d28f94399fb9915005e633
+  - enabled: 1
+    path: Assets/Scenes/levelselect_heaven.unity
+    guid: eb10b43f9d457e54385fbab5e38ce299
   m_configObjects: {}
