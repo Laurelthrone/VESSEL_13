@@ -24,6 +24,29 @@ public class Scener : MonoBehaviour
         transition.SetFloat("Speed", 0);
         StartCoroutine(Init());
         if (GameObject.Find("Player") == null) ready();
+        string name = SceneManager.GetActiveScene().name;
+
+        Globals.nopause = new string[5];
+        Globals.nopause[0] = "titlescreen";
+        Globals.nopause[1] = "levelselect_crystal";
+        Globals.nopause[2] = "levelselect_lab";
+        Globals.nopause[3] = "settings";
+        Globals.nopause[4] = "levelselect_hell";
+
+        if (Globals.timeScale == 0)
+        {
+            Globals.timeScale = 1;
+            Globals.speedSelected = 3;
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (Globals.nopause[i] == name)
+            {
+                Time.timeScale = Globals.timeScale;
+                break;
+            }
+        }
     }
 
     public static void ready()
@@ -34,6 +57,7 @@ public class Scener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Time.timeScale);
         if (Input.anyKeyDown && SceneManager.GetActiveScene().name != "titlescreen")
         {
             if (Input.GetKeyDown("r")) reloadScene();

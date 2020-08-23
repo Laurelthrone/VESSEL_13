@@ -22,6 +22,8 @@ public class Globals : MonoBehaviour
     public static int speedSelected = 3;
     public static readonly float[] speeds = { .25f, .50f, .75f, 1, 1.25f, 1.5f, 1.75f, 2 };
 
+    public static string[] nopause;
+
     // Start is called before the first frame update
     void Start()
     {
