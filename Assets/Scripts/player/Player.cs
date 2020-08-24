@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
 
         if (playerState == "slam")
         {
+            player.velocity = new Vector2(player.velocity.x, gravityFlipped ? 30 : -30);
             spriteAnimator.SetFloat("Speed", 6 * Math.Sign(player.velocity.x));
             trail.enabled = false;
             if (canWallbounce) wallbounce();
@@ -157,7 +158,12 @@ public class Player : MonoBehaviour
     {
         return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, gravityFlipped ? transform.position.y + .5f : transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - (margin * (gravityFlipped ? -1 : 1))), mask);
     }
-            
+
+    private bool groundDetect(float margin)
+    {
+        return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, gravityFlipped ? transform.position.y + .5f : transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - (margin * (gravityFlipped ? -1 : 1))));
+    }
+
     private void isGrounded()
     {
         if (groundDetect(Ground, groundMargin) && playerState != "victory")
@@ -256,7 +262,6 @@ public class Player : MonoBehaviour
         playerState = "slam";
         Debug.Log("Playerstate entered: " + playerState);
         Sounder.PlaySound("drop");
-        player.velocity = new Vector2(player.velocity.x, gravityFlipped ? 30 : -30);   
     }
 
     private void land()

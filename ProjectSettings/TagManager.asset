@@ -16,6 +16,7 @@ TagManager:
   - GlitchVictory
   - Deathplane
   - GravityFlip
+  - Purple
   layers:
   - Default
   - TransparentFX
