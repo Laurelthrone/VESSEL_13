@@ -15,6 +15,7 @@ TagManager:
   - Floorbouncer
   - GlitchVictory
   - Deathplane
+  - GravityFlip
   layers:
   - Default
   - TransparentFX

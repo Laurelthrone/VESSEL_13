@@ -20304,7 +20304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1553660954}
   scener: {fileID: 0}
-  target: levelselect_heaven
+  target: levelselect_final
 --- !u!114 &1553660954
 MonoBehaviour:
   m_ObjectHideFlags: 0

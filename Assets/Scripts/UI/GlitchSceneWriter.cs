@@ -21,7 +21,7 @@ public class GlitchSceneWriter : OnscreenWriterBase
         lines[7] = "It's not fair.";
         lines[8] = "We won. Why is this happening?";
         lines[9] = "Can we still stop it?";
-        lines[10] = "No, I think the end is inevitable now.";
-        lines[11] = "This was never meant to be.";
+        lines[10] = "I... I think there's one more thing we can try.";
+        lines[11] = "... but I suspect it was never meant to be.";
     }
 }
