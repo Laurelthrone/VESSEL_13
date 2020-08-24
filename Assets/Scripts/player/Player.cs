@@ -430,7 +430,12 @@ public class Player : MonoBehaviour
         Physics2D.gravity *= -1;
     }
 
-    private void floorbounce() => player.velocity = new Vector2(player.velocity.x, 40);
+    private void floorbounce()
+    {
+        playerState = "airborne";
+        doubleJump = true;
+        player.velocity = new Vector2(player.velocity.x, 40);
+    }   
 
     IEnumerator allowWallbounce()
     {
