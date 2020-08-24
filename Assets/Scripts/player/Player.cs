@@ -422,6 +422,7 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
         else if (collision.collider.tag == "Floorbouncer" && playerState == "slam") floorbounce();
         else if (collision.collider.tag == "GravityFlip" && playerState == "slam") flipGravity();
+        else if (collision.collider.tag == "Purple" && playerState == "slam" && groundDetect(ymov)) land(); 
     }
 
     private void flipGravity()
