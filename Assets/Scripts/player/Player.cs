@@ -8,10 +8,6 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
-    ~Player()
-    {
-        Debug.Log("DESTROYED");
-    }
 
     //public
     public static string playerState = "grounded";
@@ -45,6 +41,7 @@ public class Player : MonoBehaviour
     bool doubleJump;
     bool initialized = false;
     bool canWallbounce = false;
+    bool gravityFlipped = false;
 
     string spriteState;
 
@@ -68,6 +65,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
+        if (Physics2D.gravity.y > 0) Physics2D.gravity *= -1;
         scener = Globals.scener;
         Globals.timeScale += Globals.timeScale == 0 ? 1 : 0;
         Time.timeScale = 0;
@@ -112,6 +110,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(playerState); 
         if (playerState == "victory" || playerState == "glitch" || !initialized) return;
 
         if (pointLight.pointLightOuterRadius != targetRadius)
@@ -156,7 +155,7 @@ public class Player : MonoBehaviour
 
     private bool groundDetect(LayerMask mask, float margin)
     {
-        return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - margin), mask);
+        return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, gravityFlipped ? transform.position.y + .5f : transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - (margin * (gravityFlipped ? -1 : 1))), mask);
     }
             
     private void isGrounded()
@@ -172,7 +171,7 @@ public class Player : MonoBehaviour
                 playerState = "airborne";
                 doSquash = true;
             }
-            else if (playerState == "slam" && player.velocity.y > 0) land();
+            else if (playerState == "slam" && (gravityFlipped ? (player.velocity.y) < 0 : (player.velocity.y > 0))) land();
         }
         return;
     }
@@ -207,10 +206,9 @@ public class Player : MonoBehaviour
         {
             squash.SetTrigger("Stretch");
             doSquash = true;
-            Debug.Log(ymov);
             DJumpParticleScript.burstParticle(1, 1, 1, 8);
             player.constraints = RigidbodyConstraints2D.FreezeRotation;
-            ymov = (jumpheight * 100 + Mathf.Abs(player.velocity.y));
+            ymov = ((gravityFlipped ? -1 : 1) * jumpheight * 100 + Mathf.Abs(player.velocity.y));
             player.velocity = new Vector2(player.velocity.x, 0);
             if (!grounded) doubleJump = false;
             slamTime = slamCooldown + Time.time;
@@ -220,7 +218,7 @@ public class Player : MonoBehaviour
 
     private void abilities(ref float ymov)
     {
-        if (playerState != "slam" && !grounded && Input.GetButtonDown("Slam"))
+        if (playerState != "slam" && Input.GetButtonDown(gravityFlipped ? "Jump" : "Slam"))
         {
             //Check if slam is available
             if (slamTime <= Time.time)
@@ -234,7 +232,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown(gravityFlipped ? "Slam" : "Jump"))
         {
 
             if (grounded)
@@ -255,9 +253,10 @@ public class Player : MonoBehaviour
     {
         squash.SetTrigger("Slam");
         thisCamera.SendMessage("slamShake");
-        player.velocity = new Vector2(player.velocity.x, -30);
         playerState = "slam";
+        Debug.Log("Playerstate entered: " + playerState);
         Sounder.PlaySound("drop");
+        player.velocity = new Vector2(player.velocity.x, gravityFlipped ? 30 : -30);   
     }
 
     private void land()
@@ -417,6 +416,13 @@ public class Player : MonoBehaviour
 
         if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
         else if (collision.collider.tag == "Floorbouncer" && playerState == "slam") floorbounce();
+        else if (collision.collider.tag == "GravityFlip" && playerState == "slam") flipGravity();
+    }
+
+    private void flipGravity()
+    {
+        gravityFlipped = !gravityFlipped;
+        Physics2D.gravity *= -1;
     }
 
     private void floorbounce() => player.velocity = new Vector2(player.velocity.x, 40);

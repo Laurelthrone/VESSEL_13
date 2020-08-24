@@ -57,7 +57,6 @@ public class Scener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.timeScale);
         if (Input.anyKeyDown && SceneManager.GetActiveScene().name != "titlescreen")
         {
             if (Input.GetKeyDown("r")) reloadScene();
