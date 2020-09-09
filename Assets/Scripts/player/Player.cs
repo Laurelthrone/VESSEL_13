@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
 
     float targetRadius;
     float slamTime;
+    float fixUpsideDownSlam;
     float ymov;
     float crateMargin;
     float storeXvel;
@@ -156,7 +157,7 @@ public class Player : MonoBehaviour
 
     private bool groundDetect(LayerMask mask, float margin)
     {
-        return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, gravityFlipped ? transform.position.y + .5f : transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - (margin * (gravityFlipped ? -1 : 1))), mask);
+        return Physics2D.OverlapArea(new Vector2(transform.position.x - .4f, gravityFlipped ? transform.position.y + .5f : transform.position.y - .5f), new Vector2(transform.position.x + .4f, transform.position.y - (margin * (gravityFlipped ? -1.5f : 1))), mask);
     }
 
     private bool groundDetect(float margin)
@@ -362,7 +363,7 @@ public class Player : MonoBehaviour
             Sounder.PlaySound("revive");
             playerState = "grounded";
             doubleJump = true;
-            thisCamera.SendMessage("deathShake");
+            thisCamera.SendMessage("revive");
         }
     }
 
@@ -401,7 +402,7 @@ public class Player : MonoBehaviour
     private void crateBroken()
     {
         thisCamera.SendMessage("land");
-        player.velocity = groundDetect(Crates, crateMargin) ? new Vector2(player.velocity.x, 30) : new Vector2(player.velocity.x, 20);
+        player.velocity = groundDetect(Crates, crateMargin) ? new Vector2(player.velocity.x, 30 * (gravityFlipped ? -1 : 1)) : new Vector2(player.velocity.x, 20 * (gravityFlipped ? -1 : 1));
         squash.SetTrigger("Squash");
         playerState = "airborne";
         doubleJump = true;
@@ -421,7 +422,7 @@ public class Player : MonoBehaviour
 
         if (collision.collider.tag == "Wallbouncer") StartCoroutine(allowWallbounce());
         else if (collision.collider.tag == "Floorbouncer" && playerState == "slam") floorbounce();
-        else if (collision.collider.tag == "GravityFlip" && playerState == "slam") flipGravity();
+        else if (collision.collider.tag == "GravityFlip") flipGravity();
         else if (collision.collider.tag == "Purple" && playerState == "slam" && groundDetect(ymov)) land(); 
     }
 
@@ -435,7 +436,7 @@ public class Player : MonoBehaviour
     {
         playerState = "airborne";
         doubleJump = true;
-        player.velocity = new Vector2(player.velocity.x, 40);
+        player.velocity = new Vector2(player.velocity.x, 40 * (gravityFlipped ? -1 : 1));
     }   
 
     IEnumerator allowWallbounce()
@@ -459,7 +460,7 @@ public class Player : MonoBehaviour
         squash.SetTrigger("Squash");
 
         //Apply the bounce velocity
-        player.velocity = new Vector2(storeXvel * 1.5f, 30);
+        player.velocity = new Vector2(storeXvel * 1.5f, 30 * (gravityFlipped ? -1 : 1));
 
         //Set player state
         playerState = "airborne";

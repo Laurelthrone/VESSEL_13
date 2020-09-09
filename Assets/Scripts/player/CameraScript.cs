@@ -36,6 +36,14 @@ public class CameraScript : MonoBehaviour
         }
     }
 
+    protected void revive()
+    {
+        if (Globals.shakeEnabled)
+        {
+            animator.SetTrigger("Revive");
+        }
+    }
+
     void land()
     {
         if (Globals.shakeEnabled) animator.SetTrigger("Land");

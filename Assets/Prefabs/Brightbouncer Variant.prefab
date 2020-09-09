@@ -65,12 +65,12 @@ PrefabInstance:
     - target: {fileID: 2674746151948457513, guid: 738522e0526d1d748bfee71fa5e9a2bf,
         type: 3}
       propertyPath: m_Intensity
-      value: 2.01
+      value: 4.59
       objectReference: {fileID: 0}
     - target: {fileID: 2674746151948457519, guid: 738522e0526d1d748bfee71fa5e9a2bf,
         type: 3}
       propertyPath: m_Name
-      value: Brightbouncer
+      value: Brightbouncer Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 738522e0526d1d748bfee71fa5e9a2bf, type: 3}
